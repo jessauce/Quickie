@@ -52,7 +52,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="113dp"
         android:backgroundTint="#E1705D"
-        android:text="Continue"
+        android:text="Proceed"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

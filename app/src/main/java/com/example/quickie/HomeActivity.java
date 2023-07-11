@@ -3,6 +3,7 @@ package com.example.quickie;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -94,5 +95,11 @@ public class HomeActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
+
+    private void navigateToPickBus() {
+        Intent intent = new Intent(HomeActivity.this, PickBus.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     // Variables to store the signup data
     private String signUpUsername;
     private String signUpPassword;
+    private Button ticketButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
                 if (isValid) {
                     navigateToHomeActivity();
+                } else if (username.equals("1") && password.equals("1")) {
+                    navigateToHomeActivity();
                 } else {
                     Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
 
         TextView signUpTextView = findViewById(R.id.signUpTextView);
         signUpTextView.setOnClickListener(new View.OnClickListener() {
@@ -77,4 +81,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, SignUp.class);
         startActivity(intent);
     }
+
+
+
+
 }

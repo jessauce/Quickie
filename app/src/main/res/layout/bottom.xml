@@ -9,9 +9,9 @@
         android:id="@+id/departandreturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:text="  Depart                 Returning"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="15dp"
+        android:text="Depart"
         android:textColor="#E1705D"
         android:textSize="25dp"
         android:textStyle="bold" />
@@ -103,5 +103,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/pickbusButton"
+        android:layout_width="345dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="113dp"
+        android:backgroundTint="#E1705D"
+        android:text="Pick A Bus"
+        android:textColor="@color/white" />
 
 </LinearLayout>
