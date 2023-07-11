@@ -57,7 +57,6 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayout shareLayout = dialog.findViewById(R.id.layoutShare);
         LinearLayout uploadLayout = dialog.findViewById(R.id.layoutUpload);
         LinearLayout printLayout = dialog.findViewById(R.id.layoutPrint);
-
         editLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,10 +95,10 @@ public class HomeActivity extends AppCompatActivity {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
-
-    private void navigateToPickBus() {
-        Intent intent = new Intent(HomeActivity.this, PickBus.class);
-        startActivity(intent);
-        finish();
-    }
 }
+
+
+
+
+
+
