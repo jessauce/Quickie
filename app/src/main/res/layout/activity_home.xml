@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/homewmap2"
+    android:background="@drawable/homwmap"
     tools:context=".HomeActivity">
 
     <AutoCompleteTextView
@@ -17,9 +17,9 @@
         android:background="@drawable/rectangle_gray"
         android:hint="From:"
         android:padding="8dp"
+        android:textColor="@android:color/black"
         android:textColorHint="@color/black"
         android:textSize="15sp"
-        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.722"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,16 +36,16 @@
         android:background="@drawable/rectangle_gray"
         android:hint="To:"
         android:padding="8dp"
+        android:textColor="@android:color/black"
         android:textColorHint="@color/black"
         android:textSize="15sp"
-        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/originComboBox"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/bookButton"
+        android:id="@+id/continueButton"
         android:layout_width="345dp"
         android:layout_height="65dp"
         android:layout_marginStart="24dp"
@@ -57,6 +57,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
