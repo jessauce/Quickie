@@ -2,6 +2,7 @@ package com.example.quickie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -52,5 +53,16 @@ public class ticket_page extends AppCompatActivity {
         } catch (WriterException e) {
             e.printStackTrace();
         }
+    }
+    public void onHomeButtonClick(View view) {
+        // Navigate to Tickets activity
+        Intent intent = new Intent(ticket_page.this, HomeActivity.class);
+        startActivity(intent);
+    }
+
+    public void onProfileButtonClick(View view) {
+        // Navigate to Profile activity
+        Intent intent = new Intent(ticket_page.this, Profile.class);
+        startActivity(intent);
     }
 }

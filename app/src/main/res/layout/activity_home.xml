@@ -78,9 +78,9 @@
 
             <ImageView
                 android:id="@+id/homeButtonImage"
-                android:layout_width="50dp"
-                android:layout_height="48dp"
-                android:src="@drawable/booking" />
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/bookedcircle" />
 
             <TextView
                 android:id="@+id/homeButtonText"
@@ -112,7 +112,7 @@
                 android:id="@+id/ticketsButtonText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tickets"
+                android:text="Ticket"
                 android:textColor="#E1705D"
                 android:layout_marginTop="-6dp"
                 android:textSize="14sp" />
