@@ -18,4 +18,15 @@ public class PickBus extends AppCompatActivity {
         Intent intent = new Intent(this, ChooseSeat.class);
         startActivity(intent);
     }
+    public void onTicketsButtonClick(View view) {
+        // Navigate to Tickets activity
+        Intent intent = new Intent(PickBus.this, ticket_page.class);
+        startActivity(intent);
+    }
+
+    public void onProfileButtonClick(View view) {
+        // Navigate to Profile activity
+        Intent intent = new Intent(PickBus.this, Profile.class);
+        startActivity(intent);
+    }
 }
