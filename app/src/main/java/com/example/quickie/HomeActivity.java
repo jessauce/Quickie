@@ -29,6 +29,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+        // Set click listeners for the buttons
+
         String[] originItems = {"Cebu South Bus Terminal"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, originItems);
         AutoCompleteTextView originComboBox = findViewById(R.id.originComboBox);
@@ -107,6 +110,19 @@ public class HomeActivity extends AppCompatActivity {
 
     private void navigateToPickBusActivity() {
         Intent intent = new Intent(HomeActivity.this, PickBus.class);
+        startActivity(intent);
+    }
+
+
+    public void onTicketsButtonClick(View view) {
+        // Navigate to Tickets activity
+        Intent intent = new Intent(HomeActivity.this, ticket_page.class);
+        startActivity(intent);
+    }
+
+    public void onProfileButtonClick(View view) {
+        // Navigate to Profile activity
+        Intent intent = new Intent(HomeActivity.this, Profile.class);
         startActivity(intent);
     }
 }
