@@ -21,4 +21,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="111dp"
+        android:text="I accept the terms and conditions"
+        android:textColor="#545454"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

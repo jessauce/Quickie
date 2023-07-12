@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/profile"
+    android:background="@drawable/profilebg"
     tools:context=".Profile">
 
     <LinearLayout
@@ -95,55 +95,278 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/personaldataButton"
-        android:layout_width="307dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="365dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="475dp"
-        android:backgroundTint="@color/zxing_transparent"
-        android:text=" Personal Data"
-        android:textAlignment="textStart"
-        android:textColor="#545454"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
-
-    <Button
-        android:id="@+id/paymentButton"
-        android:layout_width="302dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="74dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="340dp"
-        android:backgroundTint="@color/zxing_transparent"
-        android:text=" Payment Methods"
-        android:textAlignment="textStart"
-        android:textColor="#545454"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personaldataButton" />
-
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/profileImageView"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="143dp"
+        android:layout_marginEnd="116dp"
+        android:src="@drawable/picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/changeImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="165dp"
-        android:layout_marginEnd="142dp"
-        android:layout_marginBottom="76dp"
-        app:layout_constraintBottom_toTopOf="@+id/personaldataButton"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="318dp"
+        android:layout_marginEnd="140dp"
+        android:text="Choose From Gallery"
+        android:textColor="#E1705D"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/otherTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="344dp"
+        android:layout_marginEnd="161dp"
+        android:clickable="true"
+        android:minHeight="48dp"
+        android:text="Take A Picture"
+        android:textColor="#E1705D"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="345dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="404dp"
+        android:layout_marginEnd="35dp"
+        android:background="@drawable/profile_rectangle"
+        android:clickable="true"
+        android:onClick="navigateToPersonalData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/usernameEditText"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/pdataView"
+            android:text="Personal Data"
+            android:textColor="#545454"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/pdataView"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/pdata" />
+
+        <ImageView
+            android:id="@+id/pdataarrowView"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="315dp"
+            android:src="@drawable/arrow" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="345dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="468dp"
+        android:layout_marginEnd="46dp"
+        android:background="@drawable/profile_rectangle"
+        android:clickable="true"
+        android:onClick="navigateToPaymentMethods"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/paymentEditText"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/paymentView"
+            android:text="Payment Methods"
+            android:textColor="#545454"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/paymentView"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/payment" />
+
+        <ImageView
+            android:id="@+id/paymentarrowView"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="315dp"
+            android:src="@drawable/arrow" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="345dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="532dp"
+        android:layout_marginEnd="46dp"
+        android:background="@drawable/profile_rectangle"
+        android:clickable="true"
+        android:onClick="navigateToChangePass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/changepassEditText"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/changepassView"
+            android:text="Change Password"
+            android:textColor="#545454"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/changepassView"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/changepass" />
+
+        <ImageView
+            android:id="@+id/changepassarrowView"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="315dp"
+            android:src="@drawable/arrow" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="345dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="596dp"
+        android:layout_marginEnd="46dp"
+        android:background="@drawable/profile_rectangle"
+        android:clickable="true"
+        android:onClick="navigateToAboutUs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/aboutusEditText"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/aboutusView"
+            android:text="About Us"
+            android:textColor="#545454"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/aboutusView"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/aboutusicon" />
+
+        <ImageView
+            android:id="@+id/aboutusarrowView"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="315dp"
+            android:src="@drawable/arrow" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="345dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="660dp"
+        android:layout_marginEnd="46dp"
+        android:background="@drawable/profile_rectangle"
+        android:clickable="true"
+        android:onClick="navigateToMainActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/signoutEditText"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toEndOf="@+id/signoutView"
+            android:text="Sign Out"
+            android:textColor="#545454"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/signoutView"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/signouticon" />
+
+        <ImageView
+            android:id="@+id/signoutarrowView"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="315dp"
+            android:src="@drawable/arrow" />
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
