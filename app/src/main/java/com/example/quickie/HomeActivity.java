@@ -16,11 +16,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
     Button bottomsheet;
+    Button pickBusButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,13 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayout shareLayout = dialog.findViewById(R.id.layoutShare);
         LinearLayout uploadLayout = dialog.findViewById(R.id.layoutUpload);
         LinearLayout printLayout = dialog.findViewById(R.id.layoutPrint);
+        pickBusButton = dialog.findViewById(R.id.pickbusButton);
+        pickBusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToPickBusActivity();
+            }
+        });
         editLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,10 +104,9 @@ public class HomeActivity extends AppCompatActivity {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
+
+    private void navigateToPickBusActivity() {
+        Intent intent = new Intent(HomeActivity.this, PickBus.class);
+        startActivity(intent);
+    }
 }
-
-
-
-
-
-

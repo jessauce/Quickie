@@ -7,4 +7,37 @@
     android:background="@drawable/pickbus"
     tools:context=".PickBus">
 
+    <Button
+        android:id="@+id/transparentButton"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="289dp"
+        android:backgroundTint="@android:color/transparent"
+        android:clickable="true"
+        android:contentDescription="Transparent Button"
+        android:onClick="navigateToHomeActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/busbutton"
+        android:layout_width="366dp"
+        android:layout_height="599dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="142dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="150dp"
+        android:background="@android:color/transparent"
+        android:onClick="navigateToChooseSeat"
+        android:text="."
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

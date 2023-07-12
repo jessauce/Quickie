@@ -113,6 +113,8 @@
         android:layout_marginBottom="113dp"
         android:backgroundTint="#E1705D"
         android:text="Pick A Bus"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:clickable="true"
+        android:focusable="true" />
 
 </LinearLayout>
