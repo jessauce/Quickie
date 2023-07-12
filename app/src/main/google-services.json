@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "10200089744",
+    "project_id": "bus-ticketing-app",
+    "storage_bucket": "bus-ticketing-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10200089744:android:69a338ccc8987f4020c415",
+        "android_client_info": {
+          "package_name": "com.Frozen.Quickie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10200089744-cjlpvcva2kurge3f7ofoec88ff548u1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFqrdfCNBfUAyT4HaDHI_w2b_n4bpHnxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10200089744-cjlpvcva2kurge3f7ofoec88ff548u1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

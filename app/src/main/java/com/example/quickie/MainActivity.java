@@ -10,8 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class MainActivity extends AppCompatActivity {
 
+    FirebaseFirestore firestore;
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button signInButton;
