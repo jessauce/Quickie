@@ -146,7 +146,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/transparentButton"
+        android:id="@+id/signuptransparentButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginStart="20dp"

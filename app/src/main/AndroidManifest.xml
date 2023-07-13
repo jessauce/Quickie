@@ -14,8 +14,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,11 +24,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quickie"
         tools:targetApi="31">
-
+        <activity
+            android:name=".PaymentMethods"
+            android:exported="false" />
+        <activity
+            android:name=".PersonalData"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePass"
+            android:exported="false" />
         <activity
             android:name=".ticket_page"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".ChooseSeat"
             android:exported="false" />
@@ -43,24 +48,21 @@
         <activity
             android:name=".PickBus"
             android:exported="false" />
-
         <activity
             android:name=".Get_Started"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
-
         <activity
             android:name=".SignUp"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -74,7 +76,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

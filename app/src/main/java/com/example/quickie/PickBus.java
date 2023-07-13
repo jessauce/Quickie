@@ -5,8 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.annotation.NonNull;
 
 public class PickBus extends AppCompatActivity {
+
+    public void navigateToHomeActivity(View view) {
+        Intent intent = new Intent(PickBus.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

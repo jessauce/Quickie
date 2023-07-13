@@ -137,6 +137,22 @@ public class Profile extends AppCompatActivity {
         Intent intent = new Intent(Profile.this, HomeActivity.class);
         startActivity(intent);
     }
+    public void navigateToPersonalData(View view) {
+        // Navigate to PersonalData activity
+        Intent intent = new Intent(Profile.this, PersonalData.class);
+        startActivity(intent);
+    }
+    public void navigateToPaymentMethods(View view) {
+        // Navigate to About Us activity
+        Intent intent = new Intent(Profile.this, PaymentMethods.class);
+        startActivity(intent);
+    }
+
+    public void navigateToChangePass(View view) {
+        // Navigate to About Us activity
+        Intent intent = new Intent(Profile.this, ChangePass.class);
+        startActivity(intent);
+    }
     public void navigateToAboutUs() {
         // Navigate to About Us activity
         Intent intent = new Intent(Profile.this, AboutUs.class);

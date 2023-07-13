@@ -41,7 +41,11 @@ public class SignUp extends AppCompatActivity {
 
     String txtfirstName, lastName, txtemail, txtphone, txtusername, txtpassword, txtconfirmPassword;
 
-
+    public void navigateToMainActivity(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     ProgressBar progressBar;
 

@@ -5,8 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class ChooseSeat extends AppCompatActivity {
+
+    public void navigateToPickBus(View view) {
+        Intent intent = new Intent(ChooseSeat.this, PickBus.class);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,12 @@ public class ChooseSeat extends AppCompatActivity {
     public void onProfileButtonClick(View view) {
         // Navigate to Profile activity
         Intent intent = new Intent(ChooseSeat.this, Profile.class);
+        startActivity(intent);
+    }
+
+    public void navigateToTicketPage() {
+        // Navigate to About Us activity
+        Intent intent = new Intent(ChooseSeat.this, PickBus.class);
         startActivity(intent);
     }
 }
