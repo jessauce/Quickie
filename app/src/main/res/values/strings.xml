@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">Quickie</string>
+
+    <string name="terms_and_conditions_content">
+
+        Acceptance of Terms
+
+By using the online bus ticketing system, you agree to comply with these terms and conditions. If you do not agree with any part of these terms, please refrain from using the service.
+
+Ticket Reservation
+a. The online bus ticketing system allows you to reserve tickets for available bus routes and schedules.
+b. The ticket reservation is subject to availability. It does not guarantee a confirmed seat until payment is successfully processed.
+c. You are responsible for providing accurate passenger information during the reservation process.
+
+Ticket Purchase and Payment
+a. Ticket prices are displayed in the system and are subject to change without prior notice.
+b. Payment for the reserved tickets can be made through the available payment methods provided by the online system.
+c. Payments are processed securely through trusted payment gateways. However, the online bus ticketing system is not responsible for any issues or errors that may occur during the payment process.
+
+Cancellation and Refunds
+a. Ticket cancellations and refund requests are subject to the cancellation policy of the bus operator or service provider.
+b. Refunds, if applicable, will be processed according to the refund policy of the bus operator or service provider.
+c. The online bus ticketing system may charge a cancellation or processing fee as per its policy.
+
+Travel Responsibility
+a. Passengers are responsible for reaching the boarding point on time. The system provides the boarding point details and recommended arrival time.
+b. Passengers must carry a valid identification document and the ticket confirmation while traveling.
+c. Passengers are responsible for their personal belongings. The online bus ticketing system and the bus operator are not liable for any loss, damage, or theft of personal belongings.
+
+Changes and Modifications
+a. The online bus ticketing system reserves the right to modify or update these terms and conditions without prior notice.
+b. It is your responsibility to review the terms and conditions periodically to stay informed about any changes.
+c. Continued use of the service after any modifications to the terms implies your acceptance of the updated terms.
+
+Limitation of Liability
+a. The online bus ticketing system acts as an intermediary between passengers and bus operators/service providers. It does not assume liability for any actions, services, or products provided by the bus operators/service providers.
+b. The online bus ticketing system shall not be held responsible for any loss, damage, injury, or inconvenience arising from the use of the service or any related bus travel.
+
+Privacy and Data Protection
+a. The online bus ticketing system collects and stores personal information as required for ticket reservations and bookings.
+b. The system follows applicable data protection laws and safeguards user privacy. Please refer to the Privacy Policy for more information.Your terms and conditions content goes here</string>
+
 </resources>

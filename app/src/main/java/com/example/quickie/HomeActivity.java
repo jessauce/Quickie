@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
+
     Button bottomsheet;
     Button pickBusButton;
 
@@ -60,8 +61,6 @@ public class HomeActivity extends AppCompatActivity {
 
         LinearLayout editLayout = dialog.findViewById(R.id.layoutEdit);
         LinearLayout shareLayout = dialog.findViewById(R.id.layoutShare);
-        LinearLayout uploadLayout = dialog.findViewById(R.id.layoutUpload);
-        LinearLayout printLayout = dialog.findViewById(R.id.layoutPrint);
         pickBusButton = dialog.findViewById(R.id.pickbusButton);
         pickBusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,22 +81,6 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dialog.dismiss();
                 Toast.makeText(HomeActivity.this, "Share is Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        uploadLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Toast.makeText(HomeActivity.this, "Upload is Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        printLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Toast.makeText(HomeActivity.this, "Print is Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
