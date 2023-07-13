@@ -18,7 +18,6 @@ import java.util.UUID;
 
 public class ticket_page extends AppCompatActivity {
 
-    private Button btnGenerateQR;
     private ImageView imgQRCode;
     private TextView txtReferenceNumber;
 
@@ -27,7 +26,7 @@ public class ticket_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_page);
 
-        btnGenerateQR = findViewById(R.id.btnGenerateQR);
+        Button btnGenerateQR = findViewById(R.id.btnGenerateQR);
         imgQRCode = findViewById(R.id.imgQRCode);
         txtReferenceNumber = findViewById(R.id.txtReferenceNumber);
 

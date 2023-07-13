@@ -23,7 +23,8 @@
         app:layout_constraintBottom_toTopOf="@+id/lastNameEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/lastNameEditText"
@@ -41,7 +42,8 @@
         app:layout_constraintBottom_toTopOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/firstNameEditText"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -58,7 +60,8 @@
         app:layout_constraintBottom_toTopOf="@+id/phoneEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/lastNameEditText"
+        android:autofillHints="emailAddress" />
 
     <EditText
         android:id="@+id/phoneEditText"
@@ -75,7 +78,8 @@
         app:layout_constraintBottom_toTopOf="@+id/usernameEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText"
+        android:autofillHints="phone" />
 
     <EditText
         android:id="@+id/usernameEditText"
@@ -93,7 +97,8 @@
         app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneEditText"
+        android:autofillHints="username" />
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -111,7 +116,8 @@
         app:layout_constraintBottom_toTopOf="@+id/confirmPasswordEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
+        android:autofillHints="password" />
 
     <EditText
         android:id="@+id/confirmPasswordEditText"
@@ -129,7 +135,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
+        android:autofillHints="password" />
 
     <Button
         android:id="@+id/signUpButton"
@@ -147,17 +154,19 @@
 
     <Button
         android:id="@+id/signuptransparentButton"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="289dp"
+        android:layout_width="84dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="247dp"
+        android:layout_marginTop="609dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="86dp"
         android:backgroundTint="@android:color/transparent"
         android:clickable="true"
         android:contentDescription="Transparent Button"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:onClick="navigateToMainActivity"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -169,12 +178,25 @@
         android:layout_marginBottom="55dp"
         android:clickable="true"
         android:minHeight="48dp"
-        android:onClick="navigateToMainActivity"
         android:text="Already have an account? Sign in here!"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/signUpProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="170dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="684dp"
+        android:layout_marginEnd="107dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
