@@ -1,86 +1,99 @@
 package com.example.quickie;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseFirestore firestore;
-    private EditText usernameEditText;
-    private EditText passwordEditText;
-    private Button signInButton;
-
-    // Variables to store the signup data
-    private String signUpUsername;
-    private String signUpPassword;
-    private Button ticketButton;
+    TextView txtSignUp;
+    EditText edtEmail, edtPassword;
+    ProgressBar progressBar;
+    Button btnSignIn;
+    String txtEmail, txtPassword;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Retrieve the signup data from the intent extras
-        Intent intent = getIntent();
-        if (intent != null) {
-            signUpUsername = intent.getStringExtra("username");
-            signUpPassword = intent.getStringExtra("password");
-        }
+        txtSignUp = findViewById(R.id.txtSignUp);
+        edtEmail = findViewById(R.id.edtSignInEmail);
+        edtPassword = findViewById(R.id.edtSignInPassword);
+        progressBar = findViewById(R.id.progressBar2);
+        btnSignIn = findViewById(R.id.btnSignIn);
 
-        usernameEditText = findViewById(R.id.usernameEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
-        signInButton = findViewById(R.id.signInButton);
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = usernameEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
+                Intent intent = new Intent(MainActivity.this, SignUp.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
-                // Check if username and password are correct
-                boolean isValid = validateCredentials(username, password);
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtEmail = edtEmail.getText().toString().trim();
+                txtPassword = edtPassword.getText().toString().trim();
 
-                if (isValid) {
-                    navigateToHomeActivity();
-                } else if (username.equals("1") && password.equals("1")) {
-                    navigateToHomeActivity();
+                if (!txtEmail.isEmpty()) {
+                    if (txtEmail.matches(emailPattern)) {
+                        if (!txtPassword.isEmpty()) {
+                            signInUser();
+                        } else {
+                            edtPassword.setError("Password Field can't be empty");
+                        }
+                    } else {
+                        edtEmail.setError("Enter a valid Email Address");
+                    }
                 } else {
-                    Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                    edtEmail.setError("Email Field can't be empty");
                 }
             }
         });
-
-
-        TextView signUpTextView = findViewById(R.id.signUpTextView);
-        signUpTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToSignUpActivity();
-            }
-        });
     }
 
-    private boolean validateCredentials(String username, String password) {
-        // Compare entered username and password with the signup data
-        return username.equals(signUpUsername) && password.equals(signUpPassword);
-    }
+    private void signInUser() {
+        progressBar.setVisibility(View.VISIBLE);
+        btnSignIn.setVisibility(View.INVISIBLE);
 
-    private void navigateToHomeActivity() {
-        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+        mAuth.signInWithEmailAndPassword(txtEmail, txtPassword)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "Error - " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                        btnSignIn.setVisibility(View.VISIBLE);
+                    }
+                });
     }
-
-    private void navigateToSignUpActivity() {
-        Intent intent = new Intent(MainActivity.this, SignUp.class);
-        startActivity(intent);
-    }
-
 }

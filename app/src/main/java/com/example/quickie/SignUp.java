@@ -49,7 +49,7 @@ public class SignUp extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         signUpButton = findViewById(R.id.signUpButton);
-        progressBar = findViewById(R.id.signUpProgressBar);
+        progressBar = findViewById(R.id.progressBar);
         TextView txtSignIn = findViewById(R.id.signIn2TextView);
 
 
