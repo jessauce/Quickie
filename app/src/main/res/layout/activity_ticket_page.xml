@@ -7,20 +7,6 @@
     android:background="@drawable/invoice_page"
     tools:context=".ticket_page">
 
-    <Button
-        android:id="@+id/btnGenerateQR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="123dp"
-        android:layout_marginBottom="183dp"
-        android:text="Generate QR Code"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imgQRCode"
         android:layout_width="107dp"
@@ -32,22 +18,38 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.481" />
 
     <TextView
         android:id="@+id/txtReferenceNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Reference Number: "
         android:textColor="@android:color/black"
-        android:textSize="12sp"
+        android:textSize="7sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgQRCode" />
+
+    <Button
+        android:id="@+id/btnGenerateQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="123dp"
+        android:layout_marginBottom="183dp"
+        android:text="Generate QR Code"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.725" />
 
     <LinearLayout
         android:id="@+id/bottomBar"

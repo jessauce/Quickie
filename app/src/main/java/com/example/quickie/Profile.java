@@ -41,14 +41,6 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        TextView otherTextView = findViewById(R.id.otherTextView);
-        otherTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCamera();
-            }
-        });
-
         TextView aboutUsLayout = findViewById(R.id.aboutusEditText);
         aboutUsLayout.setOnClickListener(new View.OnClickListener() {
             @Override

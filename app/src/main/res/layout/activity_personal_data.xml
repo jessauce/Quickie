@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/personaldatamock"
     tools:context=".PersonalData">
 
     <LinearLayout
@@ -93,5 +94,21 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/personaldtransparentButton"
+        android:layout_width="70dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="289dp"
+        android:backgroundTint="@android:color/transparent"
+        android:clickable="true"
+        android:contentDescription="Transparent Button"
+        android:onClick="navigateToProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

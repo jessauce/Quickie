@@ -1,6 +1,7 @@
 package com.example.quickie;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -30,6 +31,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Fragment fragment  = new MapFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,fragment).commit();
 
         // Set click listeners for the buttons
 

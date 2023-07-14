@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/profilepageblank"
-    tools:context=".Profile">
+    tools:context=".Profile"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-17dp">
 
     <LinearLayout
         android:id="@+id/bottomBar"
@@ -121,28 +123,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/otherTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="344dp"
-        android:layout_marginEnd="161dp"
-        android:clickable="true"
-        android:minHeight="48dp"
-        android:text="Take A Picture"
-        android:textColor="#E1705D"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <RelativeLayout
         android:layout_width="345dp"
         android:layout_height="64dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="404dp"
+        android:layout_marginTop="384dp"
         android:layout_marginEnd="35dp"
         android:background="@drawable/profile_rectangle"
         android:clickable="true"
@@ -188,7 +173,7 @@
         android:layout_width="345dp"
         android:layout_height="64dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="468dp"
+        android:layout_marginTop="448dp"
         android:layout_marginEnd="46dp"
         android:background="@drawable/profile_rectangle"
         android:clickable="true"
@@ -234,7 +219,7 @@
         android:layout_width="345dp"
         android:layout_height="64dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="532dp"
+        android:layout_marginTop="512dp"
         android:layout_marginEnd="46dp"
         android:background="@drawable/profile_rectangle"
         android:clickable="true"
@@ -280,7 +265,7 @@
         android:layout_width="345dp"
         android:layout_height="64dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="596dp"
+        android:layout_marginTop="576dp"
         android:layout_marginEnd="46dp"
         android:background="@drawable/profile_rectangle"
         android:clickable="true"
@@ -326,7 +311,7 @@
         android:layout_width="345dp"
         android:layout_height="64dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="660dp"
+        android:layout_marginTop="640dp"
         android:layout_marginEnd="46dp"
         android:background="@drawable/profile_rectangle"
         android:clickable="true"

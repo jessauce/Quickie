@@ -1,18 +1,21 @@
 package com.example.quickie;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AlertDialog;
-import android.widget.ScrollView;
-import android.widget.LinearLayout;
-import android.content.DialogInterface;
+import android.widget.CompoundButton;
 
 
 public class Get_Started extends AppCompatActivity {
@@ -26,7 +29,31 @@ public class Get_Started extends AppCompatActivity {
         final CheckBox checkBox = findViewById(R.id.checkBox);
         TextView termsTextView = findViewById(R.id.termsTextView);
 
-        startButton.setEnabled(false); // Disable button by default
+        TextView textView = findViewById(R.id.termsTextView);
+
+        String text = "terms and conditions";
+
+        SpannableString ss = new SpannableString(text);
+
+        UnderlineSpan underlineSpan = new UnderlineSpan();
+
+        ss.setSpan(underlineSpan, 0, 20, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        textView.setText(ss);
+
+        // Initialize button state based on checkbox state
+        startButton.setEnabled(checkBox.isChecked());
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Enable/disable button based on checkbox state
+                startButton.setEnabled(isChecked);
+                // Change button color based on checkbox state
+                int buttonColor = isChecked ? getResources().getColor(R.color.button_enabled_color) : getResources().getColor(R.color.button_disabled_color);
+                startButton.setBackgroundColor(buttonColor);
+            }
+        });
 
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +105,7 @@ public class Get_Started extends AppCompatActivity {
         // Set the ScrollView as the dialog's view
         builder.setView(scrollView);
 
-        builder.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Understood", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -88,7 +115,6 @@ public class Get_Started extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
 
     private void navigateToMainActivity() {
         Intent intent = new Intent(Get_Started.this, MainActivity.class);

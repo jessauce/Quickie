@@ -8,6 +8,11 @@ import android.view.View;
 
 public class PersonalData extends AppCompatActivity {
 
+    public void navigateToProfile(View view) {
+        Intent intent = new Intent(PersonalData.this, Profile.class);
+        startActivity(intent);
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

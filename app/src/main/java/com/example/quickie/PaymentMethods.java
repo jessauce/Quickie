@@ -8,6 +8,11 @@ import android.view.View;
 
 public class PaymentMethods extends AppCompatActivity {
 
+    public void navigateToProfile(View view) {
+        Intent intent = new Intent(PaymentMethods.this, Profile.class);
+        startActivity(intent);
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
