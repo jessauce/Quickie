@@ -15,6 +15,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
+    private GoogleMap googleMap;
+    private HomeActivity homeActivity;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
@@ -25,6 +28,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
+        this.googleMap = googleMap;
         LatLng cebuCityLatLng = new LatLng(10.3157, 123.8854);
         float zoomLevel = 12f;
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cebuCityLatLng, zoomLevel));
@@ -38,7 +42,30 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 googleMap.clear();
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
                 googleMap.addMarker(markerOptions);
+
+                if (homeActivity != null) {
+                    String selectedOrigin = homeActivity.originComboBox.getText().toString();
+                    String selectedDestination = homeActivity.destinationComboBox.getText().toString();
+                    if (selectedOrigin.isEmpty()) {
+                        homeActivity.setFromLatLng(latLng);
+                    } else if (selectedDestination.isEmpty()) {
+                        homeActivity.setToLatLng(latLng);
+                    }
+                }
             }
         });
+    }
+
+    public void pinLocation(LatLng latLng, String title) {
+        googleMap.clear();
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(latLng)
+                .title(title);
+        googleMap.addMarker(markerOptions);
+    }
+
+    public void setHomeActivity(HomeActivity homeActivity) {
+        this.homeActivity = homeActivity;
     }
 }

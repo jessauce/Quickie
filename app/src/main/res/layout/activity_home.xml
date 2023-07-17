@@ -8,29 +8,29 @@
 
     <FrameLayout
         android:id="@+id/frame_layout"
-        android:layout_width="421dp"
-        android:layout_height="637dp"
-        android:layout_marginStart="1dp"
+        android:layout_width="442dp"
+        android:layout_height="625dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="125dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="190dp"
         android:translationZ="-1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.604"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229">
+        app:layout_constraintVertical_bias="0.102">
 
     </FrameLayout>
 
     <AutoCompleteTextView
         android:id="@+id/originComboBox"
-        android:layout_width="310dp"
+        android:layout_width="320dp"
         android:layout_height="50dp"
-        android:layout_marginStart="54dp"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="47dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="138dp"
+        android:layout_marginEnd="50dp"
         android:background="@drawable/rectangle_gray"
         android:hint="From:"
         android:padding="8dp"
@@ -45,11 +45,11 @@
 
     <AutoCompleteTextView
         android:id="@+id/destinationComboBox"
-        android:layout_width="310dp"
+        android:layout_width="320dp"
         android:layout_height="50dp"
-        android:layout_marginStart="43dp"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="42dp"
+        android:layout_marginEnd="60dp"
         android:background="@drawable/rectangle_gray"
         android:hint="To:"
         android:padding="8dp"
@@ -61,13 +61,44 @@
         app:layout_constraintTop_toBottomOf="@+id/originComboBox"
         tools:ignore="TouchTargetSizeCheck" />
 
+
+    <ImageView
+        android:id="@+id/pinFromImageView"
+        android:layout_width="49dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="139dp"
+        android:layout_marginEnd="43dp"
+        android:clickable="true"
+        android:contentDescription="Transparent Image"
+        android:src="@drawable/circlepin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageView
+        android:id="@+id/pinToImageView"
+        android:layout_width="49dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="209dp"
+        android:layout_marginEnd="43dp"
+        android:clickable="true"
+        android:contentDescription="Transparent Image"
+        android:src="@drawable/circlepin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <Button
         android:id="@+id/continueButton"
         android:layout_width="345dp"
         android:layout_height="65dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="113dp"
+        android:layout_marginBottom="120dp"
         android:backgroundTint="#E1705D"
         android:text="Proceed"
         android:textColor="@color/white"

@@ -2,9 +2,13 @@ package com.example.quickie;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.res.ColorStateList;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView termsTextView = findViewById(R.id.txtSignUp);
+        TextView textView = findViewById(R.id.txtSignUp);
+        String text = "Don't have an account? Sign up here!";
+        SpannableString ss = new SpannableString(text);
+        UnderlineSpan underlineSpan = new UnderlineSpan();
+        ss.setSpan(underlineSpan, 23, 36, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(ss);
 
         txtSignUp = findViewById(R.id.txtSignUp);
         edtEmail = findViewById(R.id.edtSignInEmail);
@@ -75,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void signInUser() {
         progressBar.setVisibility(View.VISIBLE);
-        btnSignIn.setVisibility(View.INVISIBLE);
+        btnSignIn.setEnabled(false); // Disable the button
+        btnSignIn.setTextColor(getResources().getColor(R.color.button_disabled_color)); // Set the text color
+        btnSignIn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.button_enabled_color))); // Set the original background color
 
         mAuth.signInWithEmailAndPassword(txtEmail, txtPassword)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {

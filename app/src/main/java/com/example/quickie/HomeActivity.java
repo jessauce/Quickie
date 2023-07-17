@@ -2,6 +2,7 @@ package com.example.quickie;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import android.widget.ImageView;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -20,33 +22,71 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HomeActivity extends AppCompatActivity {
+import com.google.android.gms.maps.model.LatLng;
 
+public class HomeActivity extends AppCompatActivity {
 
     Button bottomsheet;
     Button pickBusButton;
+    ImageView pinFromImageView;
+    ImageView pinToImageView;
+    MapFragment mapFragment;
+
+    public AutoCompleteTextView originComboBox;
+    public AutoCompleteTextView destinationComboBox;
+
+    private LatLng fromLatLng;
+    private LatLng toLatLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Fragment fragment  = new MapFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,fragment).commit();
+        Fragment fragment = new MapFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).commit();
 
         // Set click listeners for the buttons
-
         String[] originItems = {"Cebu South Bus Terminal"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, originItems);
-        AutoCompleteTextView originComboBox = findViewById(R.id.originComboBox);
+        originComboBox = findViewById(R.id.originComboBox);
         originComboBox.setAdapter(adapter);
         originComboBox.setThreshold(0); // Set threshold to 0 for immediate dropdown appearance
 
         String[] destinationItems = {"Naga Terminal", "San Fernando Terminal", "Carcar Terminal", "Argao Terminal", "Dalaguete Terminal", "Alcoy Terminal", "Boljoon Terminal", "Osblob Terminal", "Santander Terminal"};
         ArrayAdapter<String> dadapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, destinationItems);
-        AutoCompleteTextView destinationComboBox = findViewById(R.id.destinationComboBox);
+        destinationComboBox = findViewById(R.id.destinationComboBox);
         destinationComboBox.setAdapter(dadapter);
         destinationComboBox.setThreshold(0); // Set threshold to 0 for immediate dropdown appearance
+
+        pinFromImageView = findViewById(R.id.pinFromImageView);
+        pinToImageView = findViewById(R.id.pinToImageView);
+
+        pinFromImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedOrigin = originComboBox.getText().toString();
+                if (!selectedOrigin.isEmpty() && selectedOrigin.equals("Cebu South Bus Terminal")) {
+                    LatLng fromLatLng = new LatLng(10.2983, 123.8934);
+                    mapFragment.pinLocation(fromLatLng, selectedOrigin);
+                } else {
+                    Toast.makeText(HomeActivity.this, "Please select Cebu South Bus Terminal as the origin location", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        pinToImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedDestination = destinationComboBox.getText().toString();
+                if (!selectedDestination.isEmpty() && selectedDestination.equals("Naga Terminal")) {
+                    LatLng toLatLng = new LatLng(13.6180, 123.1900);
+                    mapFragment.pinLocation(toLatLng, selectedDestination);
+                } else {
+                    Toast.makeText(HomeActivity.this, "Please select Naga Terminal as the destination location", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         bottomsheet = findViewById(R.id.continueButton);
         bottomsheet.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +95,9 @@ public class HomeActivity extends AppCompatActivity {
                 showDialog();
             }
         });
+
+        mapFragment = (MapFragment) fragment;
+        mapFragment.setHomeActivity(this);
     }
 
     private void showDialog() {
@@ -99,7 +142,6 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     public void onTicketsButtonClick(View view) {
         // Navigate to Tickets activity
         Intent intent = new Intent(HomeActivity.this, ticket_page.class);
@@ -110,5 +152,13 @@ public class HomeActivity extends AppCompatActivity {
         // Navigate to Profile activity
         Intent intent = new Intent(HomeActivity.this, Profile.class);
         startActivity(intent);
+    }
+
+    public void setFromLatLng(LatLng fromLatLng) {
+        this.fromLatLng = fromLatLng;
+    }
+
+    public void setToLatLng(LatLng toLatLng) {
+        this.toLatLng = toLatLng;
     }
 }

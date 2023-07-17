@@ -2,12 +2,16 @@ package com.example.quickie;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.res.ColorStateList;
 
 import androidx.annotation.NonNull;
 
@@ -40,6 +44,14 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        TextView termsTextView = findViewById(R.id.signIn2TextView);
+        TextView textView = findViewById(R.id.signIn2TextView);
+        String text = "Already have an account? Sign in here!";
+        SpannableString ss = new SpannableString(text);
+        UnderlineSpan underlineSpan = new UnderlineSpan();
+        ss.setSpan(underlineSpan, 25, 38, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(ss);
 
         firstNameEditText = findViewById(R.id.firstNameEditText);
         lastNameEditText = findViewById(R.id.lastNameEditText);
@@ -97,7 +109,9 @@ public class SignUp extends AppCompatActivity {
 
     private void SignUpUser(String firstName, String lastName, String email, String phone, String username, String password) {
         progressBar.setVisibility(View.VISIBLE);
-        signUpButton.setVisibility(View.INVISIBLE);
+        signUpButton.setEnabled(false); // Disable the button
+        signUpButton.setTextColor(getResources().getColor(R.color.button_disabled_color)); // Set the text color
+        signUpButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.button_enabled_color))); // Set the original background color
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>(){
             @Override
