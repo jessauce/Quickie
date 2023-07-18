@@ -45,6 +45,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="337dp"
         android:layout_height="64dp"
         android:layout_marginStart="39dp"
@@ -126,5 +127,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.172" />
+
+    <TextView
+        android:id="@+id/countdownTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/otpExpiresInText"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
+        app:layout_constraintVertical_bias="0.229" />
+
+    <TextView
+        android:id="@+id/otpExpiresInText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OTP expires in:"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
+        app:layout_constraintVertical_bias="0.301" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
