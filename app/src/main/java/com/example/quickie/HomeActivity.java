@@ -70,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
                     LatLng fromLatLng = new LatLng(10.2983, 123.8934);
                     mapFragment.pinLocation(fromLatLng, selectedOrigin);
                 } else {
-                    Toast.makeText(HomeActivity.this, "Please select Cebu South Bus Terminal as the origin location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, "Please select an origin location", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -80,13 +80,38 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String selectedDestination = destinationComboBox.getText().toString();
                 if (!selectedDestination.isEmpty() && selectedDestination.equals("Naga Terminal")) {
-                    LatLng toLatLng = new LatLng(13.6180, 123.1900);
+                    LatLng toLatLng = new LatLng(10.2100, 123.7580);
+                    mapFragment.pinLocation(toLatLng, selectedDestination);
+                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("San Fernando Terminal")) {
+                    LatLng toLatLng = new LatLng(10.1667, 123.7000);
+                    mapFragment.pinLocation(toLatLng, selectedDestination);
+                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Carcar Terminal")) {
+                    LatLng toLatLng = new LatLng(10.1067, 123.6403);
+                    mapFragment.pinLocation(toLatLng, selectedDestination);
+                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Argao Terminal")) {
+                    LatLng toLatLng = new LatLng(10.1190, 123.6069);
+                    mapFragment.pinLocation(toLatLng, selectedDestination);
+                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Dalaguete Terminal")) {
+                    LatLng toLatLng = new LatLng(9.7649, 123.5902);
+                    mapFragment.pinLocation(toLatLng, selectedDestination);
+                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Alcoy Terminal")) {
+                    LatLng toLatLng = new LatLng(9.7583, 123.6033);
+                    mapFragment.pinLocation(toLatLng, selectedDestination);
+                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Boljoon Terminal")) {
+                    LatLng toLatLng = new LatLng(9.6240, 123.5134);
+                    mapFragment.pinLocation(toLatLng, selectedDestination);
+                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Osblob Terminal")) {
+                    LatLng toLatLng = new LatLng(9.5137, 123.4056);
+                    mapFragment.pinLocation(toLatLng, selectedDestination);
+                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Santander Terminal")) {
+                    LatLng toLatLng = new LatLng(9.5047, 123.2835);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
                 } else {
-                    Toast.makeText(HomeActivity.this, "Please select Naga Terminal as the destination location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, "Please select a destination location", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
 
         bottomsheet = findViewById(R.id.continueButton);
         bottomsheet.setOnClickListener(new View.OnClickListener() {
