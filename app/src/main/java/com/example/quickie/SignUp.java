@@ -35,10 +35,11 @@ public class SignUp extends AppCompatActivity {
     private EditText passwordEditText;
     private EditText confirmPasswordEditText;
     private Button signUpButton;
-    ProgressBar progressBar;
-
+    private ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private ColorStateList signUpButtonTextColor;
+    private ColorStateList signUpButtonBackgroundTint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +65,11 @@ public class SignUp extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         TextView txtSignIn = findViewById(R.id.signIn2TextView);
 
-
         mAuth = FirebaseAuth.getInstance();
-        //Initialize Firebase Firestore
         db = FirebaseFirestore.getInstance();
+
+        signUpButtonTextColor = signUpButton.getTextColors();
+        signUpButtonBackgroundTint = signUpButton.getBackgroundTintList();
 
         txtSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,12 +91,10 @@ public class SignUp extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
                 String confirmPassword = confirmPasswordEditText.getText().toString();
 
-
                 if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || phone.isEmpty()
                         || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                     Toast.makeText(SignUp.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    // Check if the email is valid using the EMAIL_ADDRESS pattern matcher
                     emailEditText.setError("Enter a valid Email!");
                 } else if (!password.equals(confirmPassword)) {
                     Toast.makeText(SignUp.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
@@ -105,18 +105,15 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-
-
     private void SignUpUser(String firstName, String lastName, String email, String phone, String username, String password) {
         progressBar.setVisibility(View.VISIBLE);
-        signUpButton.setEnabled(false); // Disable the button
-        signUpButton.setTextColor(getResources().getColor(R.color.button_disabled_color)); // Set the text color
-        signUpButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.button_enabled_color))); // Set the original background color
+        signUpButton.setEnabled(false);
+        signUpButton.setTextColor(getResources().getColor(R.color.button_disabled_color));
+        signUpButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.button_enabled_color)));
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>(){
+        mAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
-            public void onSuccess(AuthResult authresult){
-                // Create a Map to store the user data
+            public void onSuccess(AuthResult authResult) {
                 Map<String, Object> user = new HashMap<>();
                 user.put("firstName", firstName);
                 user.put("lastName", lastName);
@@ -125,34 +122,36 @@ public class SignUp extends AppCompatActivity {
                 user.put("phone", phone);
                 user.put("username", username);
 
-                // Save the user data in Firestore
                 db.collection("userData")
                         .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>(){
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
-                                // User data successfully saved in Firestore
                                 Toast.makeText(SignUp.this, "Account created", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignUp.this, MainActivity.class);
                                 startActivity(intent);
-                                finish(); // Optional: Finish the sign-up activity
+                                finish();
                             }
-
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
-                            public void onFailure(@NonNull Exception e){
-                                // An error occurred while saving user data
+                            public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(SignUp.this, "Error - " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.INVISIBLE);
+                                signUpButton.setEnabled(true);
+                                signUpButton.setTextColor(getResources().getColor(R.color.white));
+                                signUpButton.setBackgroundTintList(getResources().getColorStateList(R.color.button_enabled_color));
                             }
                         });
             }
-        }).addOnFailureListener(new OnFailureListener(){
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e){
+            public void onFailure(@NonNull Exception e) {
                 Toast.makeText(SignUp.this, "Error " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
-                signUpButton.setVisibility(View.VISIBLE);
+                signUpButton.setEnabled(true);
+                signUpButton.setTextColor(getResources().getColor(R.color.white));
+                signUpButton.setBackgroundTintList(getResources().getColorStateList(R.color.button_enabled_color));
             }
         });
     }
