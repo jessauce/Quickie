@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/busempty"
+    android:background="@drawable/pickbusempty"
     tools:context=".PickBus">
 
     <Button
@@ -16,36 +17,206 @@
         android:layout_marginEnd="289dp"
         android:backgroundTint="@android:color/transparent"
         android:clickable="true"
-        android:text="."
         android:onClick="navigateToHomeActivity"
+        android:text="."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/busbutton"
-        android:layout_width="366dp"
-        android:layout_height="599dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="142dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="150dp"
-        android:background="@android:color/transparent"
-        android:onClick="navigateToChooseSeat"
-        android:text="."
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Wrap all the content you want to be scrollable here -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Your existing content here -->
+
+            <TextView
+                android:id="@+id/Origintext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="150dp"
+                android:text="Origin → Destination"
+                android:textColor="#545454"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="186dp"
+                tools:layout_editor_absoluteY="443dp" />
+
+            <RelativeLayout
+                android:layout_width="358dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="27dp"
+                android:background="@drawable/rectangle_standardbus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/standardbusView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/standardbusfinal" />
+
+                <TextView
+                    android:id="@+id/standardtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="20dp"
+                    android:text="STANDARD"
+                    android:textColor="#E1705D"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="25sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <Button
+                    android:id="@+id/busbutton"
+                    android:layout_width="358dp"
+                    android:layout_height="200dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="navigateToChooseSeat"
+                    android:text="."
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="358dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/rectangle_deluxebus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/deluxebus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/deluxebuswhite" />
+
+                <TextView
+                    android:id="@+id/deluxetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="20dp"
+                    android:text="DELUXE"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="25sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/DiscountP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="118dp"
+                    android:text="Discount Privileges"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/Discountetc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="150dp"
+                    android:text="(Student, PWD, Senior Citizen)"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="358dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="100dp"
+                android:background="@drawable/rectangle_premiumbus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/premiumbus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/deluxebuswhite" />
+
+                <TextView
+                    android:id="@+id/premiumtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="20dp"
+                    android:text="PREMIUM"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="25sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <Button
+                    android:id="@+id/premiumbusbutton"
+                    android:layout_width="358dp"
+                    android:layout_height="200dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="navigateToChooseSeat"
+                    android:text="."
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:orientation="horizontal"
         android:background="@android:color/transparent"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -77,8 +248,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
-            android:onClick="onTicketsButtonClick"
             android:gravity="center"
+            android:onClick="onTicketsButtonClick"
             android:orientation="vertical">
 
             <ImageView
@@ -92,9 +263,9 @@
                 android:id="@+id/ticketsButtonText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-6dp"
                 android:text="Ticket"
                 android:textColor="#E1705D"
-                android:layout_marginTop="-6dp"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -104,8 +275,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
-            android:onClick="onProfileButtonClick"
             android:gravity="center"
+            android:onClick="onProfileButtonClick"
             android:orientation="vertical">
 
             <ImageView
@@ -119,12 +290,15 @@
                 android:id="@+id/profileButtonText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile"
                 android:layout_marginTop="3dp"
+                android:text="Profile"
                 android:textColor="#E1705D"
                 android:textSize="14sp" />
 
         </LinearLayout>
+
+        <!-- Your existing bottom bar content -->
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

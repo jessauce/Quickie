@@ -65,7 +65,7 @@
             android:layout_marginStart="220dp"
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/zxing_transparent"
-            android:onClick="popTimePicker"
+            android:onClick="openTimePicker"
             android:text="12:00"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -108,7 +108,8 @@
             android:text="-"
             android:textColor="#E1705D"
             android:textSize="40sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            android:onClick="onClickRegularMinusButton"/>
 
         <TextView
             android:id="@+id/regularCountTextView"
@@ -120,7 +121,8 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="142dp"
-            tools:layout_editor_absoluteY="403dp" />
+            tools:layout_editor_absoluteY="403dp"
+            />
 
         <Button
             android:id="@+id/regularPlusButton"
@@ -132,7 +134,9 @@
             android:text="+"
             android:textColor="#E1705D"
             android:textSize="40sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            android:onClick="onClickRegularPlusButton"
+            />
 
         <TextView
             android:id="@+id/DiscountP"
@@ -168,7 +172,8 @@
             android:text="-"
             android:textColor="#E1705D"
             android:textSize="40sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            android:onClick="onClickDiscountMinusButton"/>
 
         <TextView
             android:id="@+id/discountCountTextView"
@@ -192,7 +197,8 @@
             android:text="+"
             android:textColor="#E1705D"
             android:textSize="40sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            android:onClick="onClickDiscountPlusButton"/>
 
     </RelativeLayout>
 

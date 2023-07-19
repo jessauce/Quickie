@@ -1,10 +1,11 @@
 package com.example.quickie;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import android.widget.ImageView;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -18,18 +19,21 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.Calendar;
 import com.google.android.gms.maps.model.LatLng;
 
 public class HomeActivity extends AppCompatActivity {
@@ -37,11 +41,17 @@ public class HomeActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
+    private TimePickerDialog timePickerDialog;
+    private Button timeButton;
+
     Button bottomsheet;
     Button pickBusButton;
     ImageView pinFromImageView;
     ImageView pinToImageView;
     MapFragment mapFragment;
+    private int regularPassengerCount = 0;
+    private int discountPassengerCount = 0;
+
 
     public AutoCompleteTextView originComboBox;
     public AutoCompleteTextView destinationComboBox;
@@ -53,7 +63,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
 
         Fragment fragment = new MapFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).commit();
@@ -124,7 +133,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
         bottomsheet = findViewById(R.id.continueButton);
         bottomsheet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,9 +150,61 @@ public class HomeActivity extends AppCompatActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom);
 
-        //LinearLayout editLayout = dialog.findViewById(R.id.layoutEdit);
-        //LinearLayout shareLayout = dialog.findViewById(R.id.layoutShare);
+        Button datePickerButton = dialog.findViewById(R.id.datePickerButton);
+        initDatePicker(datePickerButton);
+
+        Button timeButton = dialog.findViewById(R.id.timeButton);
+        initTimePicker(timeButton);
+
         pickBusButton = dialog.findViewById(R.id.pickbusButton);
+
+        TextView regularCountTextView = dialog.findViewById(R.id.regularCountTextView);
+        TextView discountCountTextView = dialog.findViewById(R.id.discountCountTextView);
+
+        regularCountTextView.setText(String.valueOf(regularPassengerCount));
+        discountCountTextView.setText(String.valueOf(discountPassengerCount));
+
+        Button regularMinusButton = dialog.findViewById(R.id.regularMinusButton);
+        Button regularPlusButton = dialog.findViewById(R.id.regularPlusButton);
+        Button discountMinusButton = dialog.findViewById(R.id.discountMinusButton);
+        Button discountPlusButton = dialog.findViewById(R.id.discountPlusButton);
+
+        regularMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (regularPassengerCount > 0) {
+                    regularPassengerCount--;
+                    regularCountTextView.setText(String.valueOf(regularPassengerCount));
+                }
+            }
+        });
+
+        regularPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                regularPassengerCount++;
+                regularCountTextView.setText(String.valueOf(regularPassengerCount));
+            }
+        });
+
+        discountMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (discountPassengerCount > 0) {
+                    discountPassengerCount--;
+                    discountCountTextView.setText(String.valueOf(discountPassengerCount));
+                }
+            }
+        });
+
+        discountPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                discountPassengerCount++;
+                discountCountTextView.setText(String.valueOf(discountPassengerCount));
+            }
+        });
+
         pickBusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,6 +217,10 @@ public class HomeActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
+
+    public void openTimePicker(View view) {
+        timePickerDialog.show();
     }
 
     private void navigateToPickBusActivity() {
@@ -183,4 +247,120 @@ public class HomeActivity extends AppCompatActivity {
     public void setToLatLng(LatLng toLatLng) {
         this.toLatLng = toLatLng;
     }
+
+    private String getTodaysDate() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+
+    private void initDatePicker(Button datePickerButton) {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                datePickerButton.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+    }
+
+    private String makeDateString(int day, int month, int year) {
+        return getMonthFormat(month) + " " + day + " " + year;
+    }
+
+    private String getMonthFormat(int month) {
+        if (month == 1)
+            return "JAN";
+        if (month == 2)
+            return "FEB";
+        if (month == 3)
+            return "MAR";
+        if (month == 4)
+            return "APR";
+        if (month == 5)
+            return "MAY";
+        if (month == 6)
+            return "JUN";
+        if (month == 7)
+            return "JUL";
+        if (month == 8)
+            return "AUG";
+        if (month == 9)
+            return "SEP";
+        if (month == 10)
+            return "OCT";
+        if (month == 11)
+            return "NOV";
+        if (month == 12)
+            return "DEC";
+
+        //default should never happen
+        return "JAN";
+    }
+
+    public void openDatePicker(View view) {
+        datePickerDialog.show();
+    }
+
+    private void initTimePicker(Button timeButton) {
+        TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String time = makeTimeString(hourOfDay, minute);
+                timeButton.setText(time);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
+
+        timePickerDialog = new TimePickerDialog(HomeActivity.this, timeSetListener, hour, minute, false);
+    }
+
+    private String makeTimeString(int hour, int minute) {
+        return String.format("%02d:%02d", hour, minute);
+    }
+
+    public void onClickRegularMinusButton(View view) {
+        if (regularPassengerCount > 0) {
+            regularPassengerCount--;
+            TextView regularCountTextView = findViewById(R.id.regularCountTextView);
+            regularCountTextView.setText(String.valueOf(regularPassengerCount));
+        }
+    }
+
+    public void onClickRegularPlusButton(View view) {
+        regularPassengerCount++;
+        TextView regularCountTextView = findViewById(R.id.regularCountTextView);
+        regularCountTextView.setText(String.valueOf(regularPassengerCount));
+    }
+
+    public void onClickDiscountMinusButton(View view) {
+        if (discountPassengerCount > 0) {
+            discountPassengerCount--;
+            TextView discountCountTextView = findViewById(R.id.discountCountTextView);
+            discountCountTextView.setText(String.valueOf(discountPassengerCount));
+        }
+    }
+
+    public void onClickDiscountPlusButton(View view) {
+        discountPassengerCount++;
+        TextView discountCountTextView = findViewById(R.id.discountCountTextView);
+        discountCountTextView.setText(String.valueOf(discountPassengerCount));
+    }
+
 }
