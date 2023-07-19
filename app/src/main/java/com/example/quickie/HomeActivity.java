@@ -21,10 +21,21 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+
+import java.util.Calendar;
 
 import com.google.android.gms.maps.model.LatLng;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private DatePickerDialog datePickerDialog;
+    private Button dateButton;
 
     Button bottomsheet;
     Button pickBusButton;
@@ -42,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         Fragment fragment = new MapFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).commit();
@@ -130,28 +142,13 @@ public class HomeActivity extends AppCompatActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom);
 
-        LinearLayout editLayout = dialog.findViewById(R.id.layoutEdit);
-        LinearLayout shareLayout = dialog.findViewById(R.id.layoutShare);
+        //LinearLayout editLayout = dialog.findViewById(R.id.layoutEdit);
+        //LinearLayout shareLayout = dialog.findViewById(R.id.layoutShare);
         pickBusButton = dialog.findViewById(R.id.pickbusButton);
         pickBusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navigateToPickBusActivity();
-            }
-        });
-        editLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Toast.makeText(HomeActivity.this, "Edit is Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        shareLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Toast.makeText(HomeActivity.this, "Share is Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
