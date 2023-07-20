@@ -1,5 +1,6 @@
 package com.example.quickie;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
@@ -18,11 +19,16 @@ import java.util.Date;
 import java.util.Locale;
 import android.os.Environment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 
 public class Profile extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     private ImageView profileImageView;
 
@@ -30,6 +36,21 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    // User is not authenticated, redirect to MainActivity
+                    navigateToMainActivity();
+                }
+                // If the user is authenticated, you can handle this event if needed.
+            }
+        };
+
+
 
         profileImageView = findViewById(R.id.profileImageView);
 
@@ -58,6 +79,9 @@ public class Profile extends AppCompatActivity {
         });
 
     }
+
+
+
 
 
     private void openImagePicker() {
