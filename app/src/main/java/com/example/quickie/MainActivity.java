@@ -140,6 +140,11 @@ public class MainActivity extends AppCompatActivity {
                                         txtForgotPassword.setVisibility(View.INVISIBLE);
                                         countdownTimer.setVisibility(View.VISIBLE);
                                         otpExpiresInText.setVisibility(View.VISIBLE); // Set the "OTP expires in:" TextView visible
+
+                                        // Pass the email to ChangePass activity
+                                        Intent intent = new Intent(MainActivity.this, ChangePass.class);
+                                        intent.putExtra("USER_EMAIL", email);
+                                        startActivity(intent);
                                     } else {
                                         // No user found with the entered email
                                         Toast.makeText(MainActivity.this, "User not found", Toast.LENGTH_SHORT).show();
@@ -151,7 +156,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
+
+
+
         });
+
+
 
     }
 
@@ -212,6 +222,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+
 
 
     private void startCountdown() {

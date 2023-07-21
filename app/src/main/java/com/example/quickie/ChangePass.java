@@ -1,19 +1,19 @@
 package com.example.quickie;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChangePass extends AppCompatActivity {
 
@@ -42,6 +42,9 @@ public class ChangePass extends AppCompatActivity {
             // Retrieve the current user's email
             userEmail = currentUser.getEmail();
         }
+
+
+
     }
 
     public void btnChangePasswordClick(View view) {
@@ -81,6 +84,9 @@ public class ChangePass extends AppCompatActivity {
                                         // Password updated successfully
                                         Toast.makeText(ChangePass.this, "Password updated successfully.", Toast.LENGTH_SHORT).show();
 
+                                        // Update the password in the userData collection on Firestore
+                                        updatePasswordInFirestore(newPassword);
+
                                         // After changing the password, sign out the user
                                         FirebaseAuth.getInstance().signOut();
 
@@ -98,6 +104,29 @@ public class ChangePass extends AppCompatActivity {
                         // Reauthentication failed, current password is incorrect
                         Toast.makeText(ChangePass.this, "Current password is incorrect.", Toast.LENGTH_SHORT).show();
                     }
+                });
+    }
+
+    private void updatePasswordInFirestore(String newPassword) {
+        // Get a reference to the user's document in the userData collection
+        CollectionReference userDataRef = db.collection("userData");
+
+        // Create a map to update the password field in the document
+        Map<String, Object> updateData = new HashMap<>();
+        updateData.put("password", newPassword);
+
+        // Update the password field in the document
+        userDataRef.document(userEmail)
+                .update(updateData)
+                .addOnSuccessListener(aVoid -> {
+                    // Password field updated successfully in Firestore
+                    // You can add any additional logic here if needed
+                    Toast.makeText(ChangePass.this, "Password updated in Firestore successfully: " + newPassword, Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    // Failed to update the password field in Firestore
+                    Toast.makeText(ChangePass.this, "Failed to update password in Firestore.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePass.this, "Error updating password in Firestore: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
