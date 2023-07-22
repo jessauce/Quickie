@@ -43,8 +43,6 @@ public class ChangePass extends AppCompatActivity {
             userEmail = currentUser.getEmail();
         }
 
-
-
     }
 
     public void btnChangePasswordClick(View view) {
@@ -108,43 +106,44 @@ public class ChangePass extends AppCompatActivity {
     }
 
     private void updatePasswordInFirestore(String newPassword) {
-        // Get a reference to the user's document in the userData collection
+        // Get a reference to the userData collection
         CollectionReference userDataRef = db.collection("userData");
 
-        // Create a map to update the password field in the document
-        Map<String, Object> updateData = new HashMap<>();
-        updateData.put("password", newPassword);
+        // Create a query to find the document with the matching email field
+        userDataRef.whereEqualTo("email", userEmail)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        // The query returned a document with the matching email field
+                        String documentId = task.getResult().getDocuments().get(0).getId();
 
-        // Update the password field in the document
-        userDataRef.document(userEmail)
-                .update(updateData)
-                .addOnSuccessListener(aVoid -> {
-                    // Password field updated successfully in Firestore
-                    // You can add any additional logic here if needed
-                    Toast.makeText(ChangePass.this, "Password updated in Firestore successfully: " + newPassword, Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    // Failed to update the password field in Firestore
-                    Toast.makeText(ChangePass.this, "Failed to update password in Firestore.", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(ChangePass.this, "Error updating password in Firestore: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        // Create a map to update the password field in the document
+                        Map<String, Object> updateData = new HashMap<>();
+                        updateData.put("password", newPassword);
+
+                        // Update the password field in the document
+                        userDataRef.document(documentId)
+                                .update(updateData)
+                                .addOnSuccessListener(aVoid -> {
+                                    // Password field updated successfully in Firestore
+                                    // You can add any additional logic here if needed
+                                    Toast.makeText(ChangePass.this, "Password updated in Firestore successfully: " + newPassword, Toast.LENGTH_SHORT).show();
+                                })
+                                .addOnFailureListener(e -> {
+                                    // Failed to update the password field in Firestore
+                                    Toast.makeText(ChangePass.this, "Failed to update password in Firestore.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ChangePass.this, "Error updating password in Firestore: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                    } else {
+                        // No document found with the matching email field
+                        Toast.makeText(ChangePass.this, "User document not found in Firestore.", Toast.LENGTH_SHORT).show();
+                    }
                 });
     }
 
-    public void onProfileButtonClick(View view) {
+    public void navigateToProfile(View view) {
         // Navigate to Profile activity
         Intent intent = new Intent(ChangePass.this, Profile.class);
-        startActivity(intent);
-    }
-
-    public void onTicketsButtonClick(View view) {
-        // Navigate to Tickets activity
-        Intent intent = new Intent(ChangePass.this, ticket_page.class);
-        startActivity(intent);
-    }
-
-    public void onHomeButtonClick(View view) {
-        // Navigate to Home activity
-        Intent intent = new Intent(ChangePass.this, HomeActivity.class);
         startActivity(intent);
     }
 }

@@ -30,8 +30,10 @@
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/bottomBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <!-- Wrap all the content you want to be scrollable here -->
         <LinearLayout
@@ -49,8 +51,8 @@
                 android:layout_marginTop="150dp"
                 android:text="Origin → Destination"
                 android:textColor="#545454"
-                android:textStyle="bold"
                 android:textSize="30sp"
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="186dp"
                 tools:layout_editor_absoluteY="443dp" />
 
@@ -79,11 +81,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif-black"
                     android:text="STANDARD"
                     android:textColor="#E1705D"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif-black"
                     android:textSize="25sp"
+                    android:textStyle="bold"
                     tools:layout_editor_absoluteX="186dp"
                     tools:layout_editor_absoluteY="443dp" />
 
@@ -127,11 +129,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif-black"
                     android:text="DELUXE"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif-black"
                     android:textSize="25sp"
+                    android:textStyle="bold"
                     tools:layout_editor_absoluteX="186dp"
                     tools:layout_editor_absoluteY="443dp" />
 
@@ -186,11 +188,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif-black"
                     android:text="PREMIUM"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif-black"
                     android:textSize="25sp"
+                    android:textStyle="bold"
                     tools:layout_editor_absoluteX="186dp"
                     tools:layout_editor_absoluteY="443dp" />
 

@@ -23,7 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <EditText
         android:id="@+id/currentPassword"
         android:layout_width="280dp"
@@ -32,6 +31,8 @@
         android:layout_marginTop="263dp"
         android:layout_marginEnd="66dp"
         android:layout_marginBottom="580dp"
+        android:inputType="textPassword"
+        android:maxLines="1"
         android:background="@android:color/transparent"
         android:minHeight="48dp"
         android:textColor="@android:color/white"
@@ -49,6 +50,8 @@
         android:layout_marginTop="374dp"
         android:layout_marginEnd="66dp"
         android:layout_marginBottom="469dp"
+        android:inputType="textPassword"
+        android:maxLines="1"
         android:background="@android:color/transparent"
         android:minHeight="48dp"
         android:textColor="@android:color/white"
@@ -66,6 +69,8 @@
         android:layout_marginTop="487dp"
         android:layout_marginEnd="66dp"
         android:layout_marginBottom="356dp"
+        android:inputType="textPassword"
+        android:maxLines="1"
         android:background="@android:color/transparent"
         android:minHeight="48dp"
         android:textColor="@android:color/white"

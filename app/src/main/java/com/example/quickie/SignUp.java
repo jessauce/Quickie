@@ -2,8 +2,10 @@ package com.example.quickie;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +43,9 @@ public class SignUp extends AppCompatActivity {
     private ColorStateList signUpButtonTextColor;
     private ColorStateList signUpButtonBackgroundTint;
 
+    private boolean isHintDisplayed = true;
+    private boolean isUpdating = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +58,7 @@ public class SignUp extends AppCompatActivity {
         UnderlineSpan underlineSpan = new UnderlineSpan();
         ss.setSpan(underlineSpan, 25, 38, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(ss);
+
 
         firstNameEditText = findViewById(R.id.firstNameEditText);
         lastNameEditText = findViewById(R.id.lastNameEditText);
@@ -103,7 +109,83 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
+
+
+        // Set up the initial visibility for the "+63" prefix and hint text
+        phoneEditText.setText("");
+        phoneEditText.setHint("Phone Number");
+        isHintDisplayed = true;
+
+        // Create a custom TextWatcher for the EditText
+        phoneEditText.addTextChangedListener(new CustomTextWatcher(phoneEditText));
+
+        // Set up the onFocusChangeListener for the EditText
+        phoneEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    // When the EditText gains focus, show the "+63" prefix
+                    if (phoneEditText.getText().toString().isEmpty()) {
+                        phoneEditText.setText("+63");
+                        // Set the cursor position after the "+63" prefix
+                        phoneEditText.setSelection(phoneEditText.getText().length());
+                    }
+                    isHintDisplayed = false;
+                } else {
+                    // When the EditText loses focus
+                    if (phoneEditText.getText().toString().equals("+63")) {
+                        // If the user only typed "+63" without any additional digits, hide the prefix
+                        phoneEditText.setText("");
+                        isHintDisplayed = true;
+                    } else if (phoneEditText.getText().toString().isEmpty()) {
+                        // If the EditText is empty, show the hint text
+                        phoneEditText.setHint("Phone Number");
+                        isHintDisplayed = true;
+                    }
+                }
+            }
+        });
     }
+
+    private class CustomTextWatcher implements TextWatcher {
+        private final EditText editText;
+
+        CustomTextWatcher(EditText editText) {
+            this.editText = editText;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // Do nothing
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (isUpdating) {
+                // Skip the event to prevent recursive calls
+                return;
+            }
+
+            // If the user tries to delete the "+63" prefix, re-insert it
+            if (!s.toString().startsWith("+63")) {
+                isUpdating = true;
+                editText.setText("+63");
+                // Set the cursor position after the "+63" prefix
+                editText.setSelection(editText.getText().length());
+            }
+
+            isUpdating = false;
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            // If the EditText contains only "+63", treat it as empty
+            if (s.toString().equals("+63") && !isUpdating) {
+                editText.setText("");
+            }
+        }
+    }
+
 
     private void SignUpUser(String firstName, String lastName, String email, String phone, String username, String password) {
         progressBar.setVisibility(View.VISIBLE);
