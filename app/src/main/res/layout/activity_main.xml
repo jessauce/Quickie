@@ -165,5 +165,30 @@
         app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
         app:layout_constraintVertical_bias="0.301" />
 
+    <TextView
+        android:id="@+id/txtSendViaSms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send via SMS"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintEnd_toStartOf="@+id/txtSendViaEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.172" />
+
+    <TextView
+        android:id="@+id/txtSendViaEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send via Email"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtSendViaSms"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.172" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

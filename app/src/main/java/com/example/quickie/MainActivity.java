@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.annotation.SuppressLint;
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -20,8 +20,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import android.Manifest;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
     Button btnSignIn;
     TextView txtForgotPassword;
     TextView countdownTimer;
-    TextView otpExpiresInText; // Added reference to the "OTP expires in:" TextView
+    TextView txtSendViaSms;
+    TextView txtSendViaEmail;
+    TextView otpExpiresInText;
+
     String txtEmail, txtPassword;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private FirebaseAuth mAuth;
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private String phoneNumber; // Declare phoneNumber variable
     private String otp; // Declare otp variable
+
+    private boolean sendViaSmsClicked = false;
+    private boolean sendViaEmailClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
         ss.setSpan(underlineSpan, 23, 36, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(ss);
 
+        txtSendViaSms = findViewById(R.id.txtSendViaSms);
+        txtSendViaSms.setVisibility(View.INVISIBLE);
+
+        txtSendViaEmail = findViewById(R.id.txtSendViaEmail);
+        txtSendViaEmail.setVisibility(View.INVISIBLE);
+
         txtSignUp = findViewById(R.id.txtSignUp);
         edtEmail = findViewById(R.id.edtSignInEmail);
         edtPassword = findViewById(R.id.edtSignInPassword);
@@ -76,12 +86,12 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btnSignIn);
         txtForgotPassword = findViewById(R.id.forgotPassword);
         countdownTimer = findViewById(R.id.countdownTimer);
-        otpExpiresInText = findViewById(R.id.otpExpiresInText); // Initialize the "OTP expires in:" TextView
+        otpExpiresInText = findViewById(R.id.otpExpiresInText);
+        otpExpiresInText.setVisibility(View.INVISIBLE); // Set the visibility to invisible initially
 
         progressBar.setVisibility(View.INVISIBLE);
         txtForgotPassword.setVisibility(View.INVISIBLE);
         countdownTimer.setVisibility(View.INVISIBLE);
-        otpExpiresInText.setVisibility(View.INVISIBLE); // Set the visibility to invisible initially
 
         txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,20 +141,17 @@ public class MainActivity extends AppCompatActivity {
                                         phoneNumber = document.getString("phone"); // Assign the phoneNumber value
                                         otp = generateOTP(); // Generate the OTP
 
-                                        // Send the OTP to the user's phone number
-                                        sendMessageWithOTP(phoneNumber, otp);
+                                        // Set the flags to false initially
+                                        sendViaSmsClicked = false;
+                                        sendViaEmailClicked = false;
 
-                                        // Show a message to the user
-                                        Toast.makeText(MainActivity.this, "We have sent a 6-digit OTP to your phone number.", Toast.LENGTH_SHORT).show();
-                                        startCountdown();
+                                        // Show the two options for sending OTP (via SMS and via Email)
                                         txtForgotPassword.setVisibility(View.INVISIBLE);
-                                        countdownTimer.setVisibility(View.VISIBLE);
-                                        otpExpiresInText.setVisibility(View.VISIBLE); // Set the "OTP expires in:" TextView visible
+                                        txtSendViaSms.setVisibility(View.VISIBLE);
+                                        txtSendViaEmail.setVisibility(View.VISIBLE);
 
-                                        // Pass the email to ChangePass activity
-                                        Intent intent = new Intent(MainActivity.this, ChangePass.class);
-                                        intent.putExtra("USER_EMAIL", email);
-                                        startActivity(intent);
+                                        // Don't show the toast message here
+
                                     } else {
                                         // No user found with the entered email
                                         Toast.makeText(MainActivity.this, "User not found", Toast.LENGTH_SHORT).show();
@@ -154,27 +161,84 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 100);
                 }
-
             }
-
-
-
         });
 
+        txtSendViaSms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Set the flag to true and the other to false
+                sendViaSmsClicked = true;
+                sendViaEmailClicked = false;
 
+                // Send the OTP via SMS and show countdown timer
+                sendMessageWithOTP(phoneNumber, otp);
+                startCountdown();
 
+                // Set visibility of "Send via SMS" and "Send via Email" TextViews
+                txtSendViaSms.setVisibility(View.VISIBLE);
+                txtSendViaEmail.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        txtSendViaEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Set the flag to true and the other to false
+                sendViaEmailClicked = true;
+                sendViaSmsClicked = false;
+
+                // Add the functionality to send OTP via Email here
+                // For now, let's just show a Toast message indicating this feature is not yet implemented
+                Toast.makeText(MainActivity.this, "Sending OTP via Email (Not implemented yet)", Toast.LENGTH_SHORT).show();
+
+                // Set visibility of "Send via SMS" and "Send via Email" TextViews
+                txtSendViaEmail.setVisibility(View.VISIBLE);
+                txtSendViaSms.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
 
-    @SuppressLint("MissingSuperCall")
+    private void startCountdown() {
+        // Start the countdown timer and show the "OTP expires in" text only if either sendViaSmsClicked or sendViaEmailClicked is true
+        if (sendViaSmsClicked || sendViaEmailClicked) {
+            countdownTimer.setVisibility(View.VISIBLE);
+            otpExpiresInText.setVisibility(View.VISIBLE);
+            countDownTimer = new CountDownTimer(countdownDuration, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    long minutes = millisUntilFinished / 1000 / 60;
+                    long seconds = (millisUntilFinished / 1000) % 60;
+                    String countdownText = String.format("%02d:%02d", minutes, seconds);
+                    countdownTimer.setText(countdownText);
+
+                    // Change the text color to red when 30 seconds or less are remaining
+                    if (millisUntilFinished <= 30000) {
+                        countdownTimer.setTextColor(getResources().getColor(R.color.red));
+                    }
+                }
+
+                @Override
+                public void onFinish() {
+                    countdownTimer.setText("00:00");
+                    txtForgotPassword.setVisibility(View.VISIBLE);
+                    countdownTimer.setVisibility(View.INVISIBLE);
+                    otpExpiresInText.setVisibility(View.INVISIBLE); // Set the "OTP expires in:" TextView invisible
+                    txtSendViaSms.setVisibility(View.INVISIBLE);
+                    txtSendViaEmail.setVisibility(View.INVISIBLE);
+                    wrongPasswordCounter = 0; // Reset the wrong password counter
+                }
+            };
+            countDownTimer.start();
+        }
+    }
+
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 100) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                sendMessageWithOTP(phoneNumber, otp); // Use the class-level variables
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
-            }
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
         }
     }
 
@@ -225,36 +289,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-    private void startCountdown() {
-        countDownTimer = new CountDownTimer(countdownDuration, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                long minutes = millisUntilFinished / 1000 / 60;
-                long seconds = (millisUntilFinished / 1000) % 60;
-                String countdownText = String.format("%02d:%02d", minutes, seconds);
-                countdownTimer.setText(countdownText);
-
-                // Change the text color to red when 30 seconds or less are remaining
-                if (millisUntilFinished <= 30000) {
-                    countdownTimer.setTextColor(getResources().getColor(R.color.red));
-                }
-            }
-
-            @Override
-            public void onFinish() {
-                countdownTimer.setText("00:00");
-                txtForgotPassword.setVisibility(View.VISIBLE);
-                countdownTimer.setVisibility(View.INVISIBLE);
-                otpExpiresInText.setVisibility(View.INVISIBLE); // Set the "OTP expires in:" TextView invisible
-                wrongPasswordCounter = 0; // Reset the wrong password counter
-            }
-        };
-
-        countDownTimer.start();
-    }
-
     private String generateOTP() {
         // Generate a 6-digit OTP
         int otp = (int) (Math.random() * 900000) + 100000;
@@ -264,20 +298,11 @@ public class MainActivity extends AppCompatActivity {
     private void sendMessageWithOTP(String phoneNumber, String otp) {
         String message = "The OTP for forgot password login access is " + otp + ". Reminder: Never share your OTP with anyone.";
 
-
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNumber, null, message, null, null);
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "Failed to send OTP via SMS.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
         }
     }
 }

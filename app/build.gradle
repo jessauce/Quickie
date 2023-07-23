@@ -30,6 +30,10 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
 }
 
 dependencies {
@@ -119,7 +123,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.7.0'
     //implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
 
-
+// Twilio Java Helper Library
+    implementation 'com.twilio.sdk:twilio:9.8.0'
 
 }
 
