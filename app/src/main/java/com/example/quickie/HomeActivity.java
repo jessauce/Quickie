@@ -219,6 +219,9 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("standardPrice", standardPrice);
                 intent.putExtra("deluxePrice", deluxePrice);
                 intent.putExtra("premiumPrice", premiumPrice);
+
+                intent.putExtra("selectedDate", datePickerButton.getText().toString());
+
                 startActivity(intent);
             }
         });

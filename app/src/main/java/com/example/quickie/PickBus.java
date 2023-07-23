@@ -13,6 +13,8 @@ import java.util.Date;
 
 public class PickBus extends AppCompatActivity {
 
+    private String selectedDate = "";
+
     public void navigateToHomeActivity(View view) {
         Intent intent = new Intent(PickBus.this, HomeActivity.class);
         startActivity(intent);
@@ -24,12 +26,16 @@ public class PickBus extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_bus);
 
+
         // Get the selected destination and its corresponding price from the intent
         String selectedDestination = getIntent().getStringExtra("selectedDestination");
         int price = getIntent().getIntExtra("price", 0);
         int standardPrice = getIntent().getIntExtra("standardPrice", 0);
         int deluxePrice = getIntent().getIntExtra("deluxePrice", 0);
         int premiumPrice = getIntent().getIntExtra("premiumPrice", 0);
+
+        selectedDate = getIntent().getStringExtra("selectedDate");
+        updateSelectedDate();
 
         if (selectedDestination != null && !selectedDestination.isEmpty()) {
             TextView locations = findViewById(R.id.locations);
@@ -49,6 +55,20 @@ public class PickBus extends AppCompatActivity {
             TextView premiumPriceTextView = findViewById(R.id.pricespremium);
             premiumPriceTextView.setText("₱" + premiumPrice);
         }
+    }
+
+    private void updateSelectedDate() {
+        TextView dateTextView = findViewById(R.id.expressStandarddate);
+        dateTextView.setText(selectedDate);
+
+        TextView standardDateTextView = findViewById(R.id.Standarddate);
+        standardDateTextView.setText(selectedDate);
+
+        TextView deluxeDateTextView = findViewById(R.id.deluxedate);
+        deluxeDateTextView.setText(selectedDate);
+
+        TextView premiumDateTextView = findViewById(R.id.premiumdate);
+        premiumDateTextView.setText(selectedDate);
     }
 
     public void navigateToChooseSeat(View view) {
