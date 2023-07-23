@@ -8,11 +8,20 @@
     android:background="@drawable/pickbusempty"
     tools:context=".PickBus">
 
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
     <Button
         android:id="@+id/pickbustransparentButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="289dp"
         android:backgroundTint="@android:color/transparent"
@@ -24,43 +33,200 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/bottomBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@id/topBar">
 
-        <!-- Wrap all the content you want to be scrollable here -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Your existing content here -->
-
             <TextView
-                android:id="@+id/Origintext"
+                android:id="@+id/locations"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="150dp"
-                android:text="Origin → Destination"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="10dp"
+                android:text="CEB → "
                 android:textColor="#545454"
-                android:textSize="30sp"
                 android:textStyle="bold"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="186dp"
+                tools:layout_editor_absoluteY="443dp" />
+
+            <TextView
+                android:id="@+id/forexpresstext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:text="FOR EXPRESS"
+                android:textColor="#545454"
+                android:textStyle="bold"
+                android:textSize="20sp"
                 tools:layout_editor_absoluteX="186dp"
                 tools:layout_editor_absoluteY="443dp" />
 
             <RelativeLayout
                 android:layout_width="358dp"
-                android:layout_height="200dp"
+                android:layout_height="220dp"
                 android:layout_marginStart="27dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="27dp"
+                android:background="@drawable/rectangle_expressbus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/expressstandardbusView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/standardbusfinal" />
+
+                <TextView
+                    android:id="@+id/expressstandardtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="20dp"
+                    android:text="STANDARD"
+                    android:textColor="#E1705D"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="25sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/expresspricestandard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="270dp"
+                    android:layout_marginTop="20dp"
+                    android:text="₱00"
+                    android:textColor="#545454"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="25sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/expressStandarddatetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Date:"
+                    android:textColor="#a6a6a6"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                    <TextView
+                        android:id="@+id/expressStandarddate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="110dp"
+                    android:text="20 JAN"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/expressStandarddeparttimetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Departure:"
+                    android:textColor="#a6a6a6"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/expressStandarddeparttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="110dp"
+                    android:text="12:00"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/expressstandardseats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginTop="175dp"
+                    android:textStyle="bold"
+                    android:text="00 Seats available"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/expressstandardline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="140dp"
+                    android:text="__________________________________"
+                    android:textColor="#a6a6a6"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <Button
+                    android:id="@+id/expressbusbutton"
+                    android:layout_width="358dp"
+                    android:layout_height="220dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="navigateToChooseSeatExpress"
+                    android:text="."
+                    android:textColor="@color/zxing_transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/forbookingstext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:text="FOR BOOKINGS"
+                android:textColor="#545454"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="186dp"
+                tools:layout_editor_absoluteY="443dp" />
+
+            <RelativeLayout
+                android:layout_width="358dp"
+                android:layout_height="220dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="27dp"
                 android:background="@drawable/rectangle_standardbus"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,18 +247,105 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="sans-serif-black"
                     android:text="STANDARD"
                     android:textColor="#E1705D"
-                    android:textSize="25sp"
                     android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="25sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/pricestandard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="270dp"
+                    android:layout_marginTop="20dp"
+                    android:text="₱00"
+                    android:textColor="#545454"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="25sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/Standarddatetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Date:"
+                    android:textColor="#a6a6a6"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/Standarddate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="110dp"
+                    android:text="20 JAN"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/Standarddeparttimetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Departure:"
+                    android:textColor="#a6a6a6"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/Standarddeparttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="110dp"
+                    android:text="12:00"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/standardseats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginTop="175dp"
+                    android:textStyle="bold"
+                    android:text="00 Seats available"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/standardline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="140dp"
+                    android:text="__________________________________"
+                    android:textColor="#a6a6a6"
+                    android:textSize="19sp"
                     tools:layout_editor_absoluteX="186dp"
                     tools:layout_editor_absoluteY="443dp" />
 
                 <Button
                     android:id="@+id/busbutton"
                     android:layout_width="358dp"
-                    android:layout_height="200dp"
+                    android:layout_height="220dp"
                     android:background="@android:color/transparent"
                     android:onClick="navigateToChooseSeat"
                     android:text="."
@@ -105,7 +358,7 @@
 
             <RelativeLayout
                 android:layout_width="358dp"
-                android:layout_height="200dp"
+                android:layout_height="220dp"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="2dp"
@@ -129,43 +382,119 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="sans-serif-black"
                     android:text="DELUXE"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
                     android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="25sp"
                     tools:layout_editor_absoluteX="186dp"
                     tools:layout_editor_absoluteY="443dp" />
 
                 <TextView
-                    android:id="@+id/DiscountP"
+                    android:id="@+id/pricesdeluxe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="118dp"
-                    android:text="Discount Privileges"
-                    android:textColor="@color/black"
+                    android:layout_marginStart="270dp"
+                    android:layout_marginTop="20dp"
+                    android:text="₱00"
+                    android:textColor="#545454"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="25sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/deluxedatetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Date:"
+                    android:textColor="@color/white"
                     android:textSize="19sp"
                     tools:layout_editor_absoluteX="186dp"
                     tools:layout_editor_absoluteY="443dp" />
 
                 <TextView
-                    android:id="@+id/Discountetc"
+                    android:id="@+id/deluxedate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="150dp"
-                    android:text="(Student, PWD, Senior Citizen)"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="110dp"
+                    android:text="20 JAN"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
                     tools:layout_editor_absoluteX="186dp"
                     tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/deluxedeparttimetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Departure:"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/deluxedeparttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="110dp"
+                    android:text="12:00"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+
+                <TextView
+                    android:id="@+id/deluxeseats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginTop="175dp"
+                    android:textStyle="bold"
+                    android:text="00 Seats available"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/deluxeline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="140dp"
+                    android:text="__________________________________"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <Button
+                    android:id="@+id/deluxebusbutton"
+                    android:layout_width="358dp"
+                    android:layout_height="220dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="navigateToChooseSeatDeluxe"
+                    android:text="."
+                    android:textColor="@color/zxing_transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="358dp"
-                android:layout_height="200dp"
+                android:layout_height="220dp"
                 android:layout_marginStart="27dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="100dp"
@@ -196,14 +525,101 @@
                     tools:layout_editor_absoluteX="186dp"
                     tools:layout_editor_absoluteY="443dp" />
 
+                <TextView
+                    android:id="@+id/pricespremium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="270dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="₱00"
+                    android:textColor="#545454"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/premiumdatetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Date:"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/premiumdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="110dp"
+                    android:text="20 JAN"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/premiumdeparttimetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Departure:"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/premiumdeparttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="110dp"
+                    android:text="12:00"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/premiumseats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginTop="175dp"
+                    android:text="00 Seats available"
+                    android:textColor="#545454"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
+                <TextView
+                    android:id="@+id/premiumline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="140dp"
+                    android:text="__________________________________"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    tools:layout_editor_absoluteX="186dp"
+                    tools:layout_editor_absoluteY="443dp" />
+
                 <Button
                     android:id="@+id/premiumbusbutton"
                     android:layout_width="358dp"
-                    android:layout_height="200dp"
+                    android:layout_height="220dp"
                     android:background="@android:color/transparent"
-                    android:onClick="navigateToChooseSeat"
+                    android:onClick="navigateToChooseSeatPremium"
                     android:text="."
-                    android:textColor="@color/white"
+                    android:textColor="@color/zxing_transparent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -298,8 +714,6 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
-
-        <!-- Your existing bottom bar content -->
 
     </LinearLayout>
 

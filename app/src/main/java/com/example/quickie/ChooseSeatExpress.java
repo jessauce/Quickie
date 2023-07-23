@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChooseSeat extends AppCompatActivity {
+public class ChooseSeatExpress extends AppCompatActivity {
 
     // Initialize the selectedSeats list here
     private List<String> selectedSeats = new ArrayList<>();
@@ -19,12 +19,12 @@ public class ChooseSeat extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_seat);
+        setContentView(R.layout.activity_choose_seat_express);
         selectedSeatsTextView = findViewById(R.id.seatstakentext);
     }
 
     public void navigateToPickBus(View view) {
-        Intent intent = new Intent(ChooseSeat.this, PickBus.class);
+        Intent intent = new Intent(ChooseSeatExpress.this, PickBus.class);
         startActivity(intent);
     }
 
@@ -56,6 +56,6 @@ public class ChooseSeat extends AppCompatActivity {
             seatsText.setLength(seatsText.length() - 2); // Remove the last comma and space
         }
 
-        selectedSeatsTextView.setText("Standard Seats Taken: " + seatsText);
+        selectedSeatsTextView.setText("Express Seats Taken: " + seatsText);
     }
 }

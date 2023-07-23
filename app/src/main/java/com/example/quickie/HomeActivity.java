@@ -121,7 +121,7 @@ public class HomeActivity extends AppCompatActivity {
                 } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Boljoon Terminal")) {
                     LatLng toLatLng = new LatLng(9.6240, 123.5134);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
-                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Osblob Terminal")) {
+                } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Oslob Terminal")) {
                     LatLng toLatLng = new LatLng(9.5137, 123.4056);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
                 } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Santander Terminal")) {
@@ -208,7 +208,18 @@ public class HomeActivity extends AppCompatActivity {
         pickBusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToPickBusActivity();
+                String selectedDestination = destinationComboBox.getText().toString();
+                int price = getPriceForDestination(selectedDestination);
+                int standardPrice = getPriceForStandardBus(selectedDestination);
+                int deluxePrice = getPriceForDeluxeBus(selectedDestination);
+                int premiumPrice = getPriceForPremiumBus(selectedDestination);
+                Intent intent = new Intent(HomeActivity.this, PickBus.class);
+                intent.putExtra("selectedDestination", selectedDestination);
+                intent.putExtra("price", price);
+                intent.putExtra("standardPrice", standardPrice);
+                intent.putExtra("deluxePrice", deluxePrice);
+                intent.putExtra("premiumPrice", premiumPrice);
+                startActivity(intent);
             }
         });
 
@@ -219,12 +230,166 @@ public class HomeActivity extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
+    private int getPriceForDestination(String destination) {
+        int price = 0;
+        switch (destination) {
+            case "Naga Terminal":
+                price = 50;
+                break;
+            case "San Fernando Terminal":
+                price = 72;
+                break;
+            case "Carcar Terminal":
+                price = 95;
+                break;
+            case "Argao Terminal":
+                price = 117;
+                break;
+            case "Dalaguete Terminal":
+                price = 153;
+                break;
+            case "Alcoy Terminal":
+                price = 189;
+                break;
+            case "Boljoon Terminal":
+                price = 234;
+                break;
+            case "Osblob Terminal":
+                price = 176;
+                break;
+            case "Santander Terminal":
+                price = 310;
+                break;
+            // Add more cases for other destinations if needed
+            default:
+                price = 0; // If the destination is not in the mapping, set price to 0
+                break;
+        }
+        return price;
+    }
+
+    private int getPriceForStandardBus(String destination) {
+        int standardPrice = 0;
+        switch (destination) {
+            case "Naga Terminal":
+                standardPrice = 45;
+                break;
+            case "San Fernando Terminal":
+                standardPrice = 66;
+                break;
+            case "Carcar Terminal":
+                standardPrice = 81;
+                break;
+            case "Argao Terminal":
+                standardPrice = 102;
+                break;
+            case "Dalaguete Terminal":
+                standardPrice = 140;
+                break;
+            case "Alcoy Terminal":
+                standardPrice = 171;
+                break;
+            case "Boljoon Terminal":
+                standardPrice = 215;
+                break;
+            case "Osblob Terminal":
+                standardPrice = 253;
+                break;
+            case "Santander Terminal":
+                standardPrice = 285;
+                break;
+            // Add more cases for other destinations if needed
+            default:
+                standardPrice = 0; // If the destination is not in the mapping, set price to 0
+                break;
+        }
+        return standardPrice;
+    }
+
+    private int getPriceForDeluxeBus(String destination) {
+        int deluxePrice = 0;
+        switch (destination) {
+            case "Naga Terminal":
+                deluxePrice = 55;
+                break;
+            case "San Fernando Terminal":
+                deluxePrice = 78;
+                break;
+            case "Carcar Terminal":
+                deluxePrice = 102;
+                break;
+            case "Argao Terminal":
+                deluxePrice = 125;
+                break;
+            case "Dalaguete Terminal":
+                deluxePrice = 164;
+                break;
+            case "Alcoy Terminal":
+                deluxePrice = 199;
+                break;
+            case "Boljoon Terminal":
+                deluxePrice = 245;
+                break;
+            case "Osblob Terminal":
+                deluxePrice = 288;
+                break;
+            case "Santander Terminal":
+                deluxePrice = 323;
+                break;
+            // Add more cases for other destinations if needed
+            default:
+                deluxePrice = 0; // If the destination is not in the mapping, set price to 0
+                break;
+        }
+        return deluxePrice;
+    }
+
+    private int getPriceForPremiumBus(String destination) {
+        int premiumPrice = 0;
+        switch (destination) {
+            case "Naga Terminal":
+                premiumPrice = 75;
+                break;
+            case "San Fernando Terminal":
+                premiumPrice = 102;
+                break;
+            case "Carcar Terminal":
+                premiumPrice = 132;
+                break;
+            case "Argao Terminal":
+                premiumPrice = 160;
+                break;
+            case "Dalaguete Terminal":
+                premiumPrice = 204;
+                break;
+            case "Alcoy Terminal":
+                premiumPrice = 244;
+                break;
+            case "Boljoon Terminal":
+                premiumPrice = 295;
+                break;
+            case "Osblob Terminal":
+                premiumPrice = 343;
+                break;
+            case "Santander Terminal":
+                premiumPrice = 383;
+                break;
+            // Add more cases for other destinations if needed
+            default:
+                premiumPrice = 0; // If the destination is not in the mapping, set price to 0
+                break;
+        }
+        return premiumPrice;
+    }
+
     public void openTimePicker(View view) {
         timePickerDialog.show();
     }
 
     private void navigateToPickBusActivity() {
+        String selectedDestination = destinationComboBox.getText().toString();
         Intent intent = new Intent(HomeActivity.this, PickBus.class);
+        intent.putExtra("selectedDestination", selectedDestination);
         startActivity(intent);
     }
 

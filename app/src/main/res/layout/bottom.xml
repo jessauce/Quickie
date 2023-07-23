@@ -1,237 +1,237 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/dialogbg"
-    android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialogbg"
+        android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/depart2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="114dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="116dp"
-        android:text="Passengers"
-        android:textColor="#E1705D"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RelativeLayout
-        android:layout_width="345dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="23dp"
-        android:background="@drawable/rectangle_personaldata"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/pdataView"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/dateicon" />
-
-        <Button
-            android:id="@+id/datePickerButton"
-            style="?android:spinnerStyle"
+        <TextView
+            android:id="@+id/depart2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="65dp"
-            android:layout_marginTop="5dp"
-            android:onClick="openDatePicker"
-            android:text="JAN 01 2020"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:layout_marginStart="114dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="116dp"
+            android:text="Passengers"
+            android:textColor="#E1705D"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.531"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <RelativeLayout
+            android:layout_width="345dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="23dp"
+            android:background="@drawable/rectangle_personaldata"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/pdataView"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/dateicon" />
+
+            <Button
+                android:id="@+id/datePickerButton"
+                style="?android:spinnerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="5dp"
+                android:onClick="openDatePicker"
+                android:text="JAN 01 2020"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/timeButton"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:onClick="openTimePicker"
+                android:text="12:00"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="345dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="190dp"
+            android:layout_marginEnd="23dp"
+            android:background="@drawable/rectangle_personaldata"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="30dp"
+                android:text="Regular"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="186dp"
+                tools:layout_editor_absoluteY="443dp" />
+
+            <Button
+                android:id="@+id/regularMinusButton"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="-"
+                android:textColor="#E1705D"
+                android:textSize="40sp"
+                tools:ignore="TouchTargetSizeCheck"
+                android:onClick="onClickRegularMinusButton"/>
+
+            <TextView
+                android:id="@+id/regularCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="240dp"
+                android:layout_marginTop="30dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="142dp"
+                tools:layout_editor_absoluteY="403dp"
+                />
+
+            <Button
+                android:id="@+id/regularPlusButton"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="255dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="+"
+                android:textColor="#E1705D"
+                android:textSize="40sp"
+                tools:ignore="TouchTargetSizeCheck"
+                android:onClick="onClickRegularPlusButton"
+                />
+
+            <TextView
+                android:id="@+id/DiscountP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="118dp"
+                android:text="Discount Privileges"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                tools:layout_editor_absoluteX="186dp"
+                tools:layout_editor_absoluteY="443dp" />
+
+            <TextView
+                android:id="@+id/Discountetc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="150dp"
+                android:text="(Student, PWD, Senior Citizen)"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="186dp"
+                tools:layout_editor_absoluteY="443dp" />
+
+            <Button
+                android:id="@+id/discountMinusButton"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="100dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="-"
+                android:textColor="#E1705D"
+                android:textSize="40sp"
+                tools:ignore="TouchTargetSizeCheck"
+                android:onClick="onClickDiscountMinusButton"/>
+
+            <TextView
+                android:id="@+id/discountCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="240dp"
+                android:layout_marginTop="120dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="142dp"
+                tools:layout_editor_absoluteY="403dp" />
+
+            <Button
+                android:id="@+id/discountPlusButton"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="255dp"
+                android:layout_marginTop="100dp"
+                android:backgroundTint="@color/zxing_transparent"
+                android:text="+"
+                android:textColor="#E1705D"
+                android:textSize="40sp"
+                tools:ignore="TouchTargetSizeCheck"
+                android:onClick="onClickDiscountPlusButton"/>
+
+        </RelativeLayout>
+
         <Button
-            android:id="@+id/timeButton"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="5dp"
-            android:backgroundTint="@color/zxing_transparent"
-            android:onClick="openTimePicker"
-            android:text="12:00"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:id="@+id/pickbusButton"
+            android:layout_width="343dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="420dp"
+            android:layout_marginEnd="23dp"
+            android:backgroundTint="#E1705D"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="Pick A Bus"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="345dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginEnd="23dp"
-        android:background="@drawable/rectangle_personaldata"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/depart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="30dp"
-            android:text="Regular"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="186dp"
-            tools:layout_editor_absoluteY="443dp" />
-
-        <Button
-            android:id="@+id/regularMinusButton"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="170dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/zxing_transparent"
-            android:text="-"
+            android:layout_marginStart="114dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="116dp"
+            android:text="Departure"
             android:textColor="#E1705D"
-            android:textSize="40sp"
-            tools:ignore="TouchTargetSizeCheck"
-            android:onClick="onClickRegularMinusButton"/>
-
-        <TextView
-            android:id="@+id/regularCountTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="30dp"
-            android:text="0"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="142dp"
-            tools:layout_editor_absoluteY="403dp"
-            />
-
-        <Button
-            android:id="@+id/regularPlusButton"
-            android:layout_width="71dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="255dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/zxing_transparent"
-            android:text="+"
-            android:textColor="#E1705D"
-            android:textSize="40sp"
-            tools:ignore="TouchTargetSizeCheck"
-            android:onClick="onClickRegularPlusButton"
-            />
-
-        <TextView
-            android:id="@+id/DiscountP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="118dp"
-            android:text="Discount Privileges"
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            tools:layout_editor_absoluteX="186dp"
-            tools:layout_editor_absoluteY="443dp" />
-
-        <TextView
-            android:id="@+id/Discountetc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="150dp"
-            android:text="(Student, PWD, Senior Citizen)"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            tools:layout_editor_absoluteX="186dp"
-            tools:layout_editor_absoluteY="443dp" />
-
-        <Button
-            android:id="@+id/discountMinusButton"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="170dp"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="@color/zxing_transparent"
-            android:text="-"
-            android:textColor="#E1705D"
-            android:textSize="40sp"
-            tools:ignore="TouchTargetSizeCheck"
-            android:onClick="onClickDiscountMinusButton"/>
-
-        <TextView
-            android:id="@+id/discountCountTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="120dp"
-            android:text="0"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="142dp"
-            tools:layout_editor_absoluteY="403dp" />
-
-        <Button
-            android:id="@+id/discountPlusButton"
-            android:layout_width="71dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="255dp"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="@color/zxing_transparent"
-            android:text="+"
-            android:textColor="#E1705D"
-            android:textSize="40sp"
-            tools:ignore="TouchTargetSizeCheck"
-            android:onClick="onClickDiscountPlusButton"/>
-
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/pickbusButton"
-        android:layout_width="343dp"
-        android:layout_height="67dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="420dp"
-        android:layout_marginEnd="23dp"
-        android:backgroundTint="#E1705D"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="Pick A Bus"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/depart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="114dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="116dp"
-        android:text="Departure"
-        android:textColor="#E1705D"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
