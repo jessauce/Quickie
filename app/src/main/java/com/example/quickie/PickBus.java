@@ -139,9 +139,8 @@ public class PickBus extends AppCompatActivity {
             case "Santander Terminal":
                 abbreviation = "SANTNDR";
                 break;
-            // Add more cases for other destinations if needed
             default:
-                abbreviation = destination; // If the destination is not in the mapping, use the original destination as abbreviation
+                abbreviation = destination;
                 break;
         }
         return abbreviation;

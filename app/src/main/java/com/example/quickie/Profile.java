@@ -18,6 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import android.os.Environment;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -176,9 +179,33 @@ public class Profile extends AppCompatActivity {
     }
 
     public void navigateToMainActivity() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to sign out?");
+        builder.setPositiveButton("Sign Out", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                signOut(); // Call the signOut() method when the user clicks "Sign Out"
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss(); // Dismiss the dialog when the user clicks "Cancel"
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void signOut() {
+        // Sign out the user from Firebase Auth
+        mAuth.signOut();
+
         // Navigate to Main activity (sign out)
         Intent intent = new Intent(Profile.this, MainActivity.class);
         startActivity(intent);
+        finish(); // Finish the current activity so the user cannot go back to the Profile activity after signing out
     }
+
 
 }

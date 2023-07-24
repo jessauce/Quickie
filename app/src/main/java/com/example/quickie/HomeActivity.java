@@ -74,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         originComboBox.setAdapter(adapter);
         originComboBox.setThreshold(0); // Set threshold to 0 for immediate dropdown appearance
 
-        String[] destinationItems = {"Naga Terminal", "San Fernando Terminal", "Carcar Terminal", "Argao Terminal", "Dalaguete Terminal", "Alcoy Terminal", "Boljoon Terminal", "Osblob Terminal", "Santander Terminal"};
+        String[] destinationItems = {"Naga Terminal", "San Fernando Terminal", "Carcar Terminal", "Argao Terminal", "Dalaguete Terminal", "Alcoy Terminal", "Boljoon Terminal", "Oslob Terminal", "Santander Terminal"};
         ArrayAdapter<String> dadapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, destinationItems);
         destinationComboBox = findViewById(R.id.destinationComboBox);
         destinationComboBox.setAdapter(dadapter);
@@ -110,22 +110,22 @@ public class HomeActivity extends AppCompatActivity {
                     LatLng toLatLng = new LatLng(10.1067, 123.6403);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
                 } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Argao Terminal")) {
-                    LatLng toLatLng = new LatLng(10.1190, 123.6069);
+                    LatLng toLatLng = new LatLng(9.9419, 123.6033);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
                 } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Dalaguete Terminal")) {
-                    LatLng toLatLng = new LatLng(9.7649, 123.5902);
+                    LatLng toLatLng = new LatLng(9.7776, 123.5074);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
                 } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Alcoy Terminal")) {
-                    LatLng toLatLng = new LatLng(9.7583, 123.6033);
+                    LatLng toLatLng = new LatLng(9.7110, 123.4801);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
                 } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Boljoon Terminal")) {
-                    LatLng toLatLng = new LatLng(9.6240, 123.5134);
+                    LatLng toLatLng = new LatLng(9.6259, 123.4484);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
                 } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Oslob Terminal")) {
                     LatLng toLatLng = new LatLng(9.5137, 123.4056);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
                 } else if (!selectedDestination.isEmpty() && selectedDestination.equals("Santander Terminal")) {
-                    LatLng toLatLng = new LatLng(9.5047, 123.2835);
+                    LatLng toLatLng = new LatLng(9.4443, 123.3414);
                     mapFragment.pinLocation(toLatLng, selectedDestination);
                 } else {
                     Toast.makeText(HomeActivity.this, "Please select a destination location", Toast.LENGTH_SHORT).show();

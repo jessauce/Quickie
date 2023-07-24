@@ -74,12 +74,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             originMarker.setVisible(true);
             LatLng originLatLng = originMarker.getPosition();
 
-            // Add a Polyline between the origin and destination markers
+            /*// Add a Polyline between the origin and destination markers
             PolylineOptions polylineOptions = new PolylineOptions()
                     .add(originLatLng, latLng)
                     .color(Color.RED)
                     .width(3f);
-            googleMap.addPolyline(polylineOptions);
+            googleMap.addPolyline(polylineOptions);*/
 
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
             builder.include(originLatLng);
