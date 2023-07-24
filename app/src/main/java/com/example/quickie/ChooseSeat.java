@@ -6,6 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import android.util.Log;
+
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.EventListener;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +27,151 @@ public class ChooseSeat extends AppCompatActivity {
     // Initialize the selectedSeats list here
     private List<String> selectedSeats = new ArrayList<>();
     private TextView selectedSeatsTextView;
+    private TextView totalStandardTextView;
+
+    private String selectedDate = "";
+    private FirebaseFirestore db;
+    private static final String COLLECTION_PATH = "CSBT/";
+
+    private ListenerRegistration seatStatusListener;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_seat);
         selectedSeatsTextView = findViewById(R.id.seatstakentext);
+        totalStandardTextView = findViewById(R.id.totalstandardtext);
+
+        db = FirebaseFirestore.getInstance();
+        selectedDate = getIntent().getStringExtra("selectedDate");
+
+
+        // Retrieve the selected itinerary from the intent
+        String selectedItinerary = getIntent().getStringExtra("selectedItinerary");
+
+        // Convert selectedItinerary to databaseItinerary using a switch statement
+        String databaseItinerary;
+        switch (selectedItinerary) {
+            case "OSLB":
+                databaseItinerary = "CSBT-OSLOB";
+                break;
+            case "ALCOY":
+                databaseItinerary = "CSBT-ALCOY";
+                break;
+            case "ARGAO":
+                databaseItinerary = "CSBT-ARGAO";
+                break;
+            case "NAGA":
+                databaseItinerary = "CSBT-NAGA";
+                break;
+            case "SANTNDR":
+                databaseItinerary = "CSBT-SANTANDER";
+                break;
+            default:
+                // If the selectedItinerary doesn't match any case, set a default value (or handle it accordingly)
+                databaseItinerary = "";
+                break;
+        }
+
+
+
+        // Add log and toast for selectedDate here
+        Log.d("ChooseSeat", "Selected Date: " + selectedDate);
+        Log.d("ChooseSeat", "Selected Itinerary: " + selectedItinerary);
+        Log.d("ChooseSeat", "Database Itinerary: " + databaseItinerary);
+        Toast.makeText(this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Selected Itinerary: " + selectedItinerary, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Database Itinerary: " + databaseItinerary, Toast.LENGTH_SHORT).show();
+
+        // Now you can use the databaseItinerary variable to construct the Firestore document path dynamically
+        String documentPath = COLLECTION_PATH + databaseItinerary + "/rideDate/" + selectedDate + "/morningTrip/Standard";
+
+        // Set up a real-time listener for the document
+        db.document(documentPath).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot document, @Nullable FirebaseFirestoreException e) {
+
+                if (e != null) {
+                    Log.e("ChooseSeat", "Error fetching data: " + e.getMessage());
+                    Toast.makeText(ChooseSeat.this, "Data retrieval failed. Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+
+                if (document != null && document.exists()) {
+                    // DocumentSnapshot contains the seat status data for the selected date, morning trip, and Standard bus
+                    // You can access the seat status for each seat using document.getString("seatA1"), document.getString("seatA2"), etc.
+                    // The seat status should be either "0" (available) or "1" (taken)
+                    // Now you can update the UI to display the seat status
+                    updateSeatStatus(document, "A1", R.id.A1);
+                    updateSeatStatus(document, "B1", R.id.B1);
+                    updateSeatStatus(document, "C1", R.id.C1);
+                    updateSeatStatus(document, "D1", R.id.D1);
+                    updateSeatStatus(document, "A2", R.id.A2);
+                    updateSeatStatus(document, "B2", R.id.B2);
+                    updateSeatStatus(document, "C2", R.id.C2);
+                    updateSeatStatus(document, "D2", R.id.D2);
+                    updateSeatStatus(document, "A3", R.id.A3);
+                    updateSeatStatus(document, "B3", R.id.B3);
+                    updateSeatStatus(document, "C3", R.id.C3);
+                    updateSeatStatus(document, "D3", R.id.D3);
+                    updateSeatStatus(document, "A4", R.id.A4);
+                    updateSeatStatus(document, "B4", R.id.B4);
+                    updateSeatStatus(document, "C4", R.id.C4);
+                    updateSeatStatus(document, "D4", R.id.D4);
+                    updateSeatStatus(document, "A5", R.id.A5);
+                    updateSeatStatus(document, "B5", R.id.B5);
+                    updateSeatStatus(document, "C5", R.id.C5);
+                    updateSeatStatus(document, "D5", R.id.D5);
+                    updateSeatStatus(document, "A6", R.id.A6);
+                    updateSeatStatus(document, "B6", R.id.B6);
+                    updateSeatStatus(document, "C6", R.id.C6);
+                    updateSeatStatus(document, "D6", R.id.D6);
+                    updateSeatStatus(document, "A7", R.id.A7);
+                    updateSeatStatus(document, "B7", R.id.B7);
+                    updateSeatStatus(document, "C7", R.id.C7);
+                    updateSeatStatus(document, "D7", R.id.D7);
+                    updateSeatStatus(document, "A8", R.id.A8);
+                    updateSeatStatus(document, "B8", R.id.B8);
+                    updateSeatStatus(document, "C8", R.id.C8);
+                    updateSeatStatus(document, "D8", R.id.D8);
+                    // Add more seat updates here for other seats
+                    // ...
+
+                    // Calculate the total price of the selected seats
+                    int totalPrice = selectedSeats.size();
+                    totalStandardTextView.setText("Total Price: ₱" + totalPrice);
+
+                    // Show a toast message indicating successful data retrieval
+                    Toast.makeText(ChooseSeat.this, "Data retrieval successful!", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Document doesn't exist or an error occurred while fetching data
+                    // Show a toast message indicating data retrieval failure
+                    Toast.makeText(ChooseSeat.this, "Data retrieval failed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void updateSeatStatus(DocumentSnapshot document, String seatId, int seatViewId) {
+        String seatStatus = document.getString(seatId);
+        ImageView seatImageView = findViewById(seatViewId);
+
+        // Assuming you have two drawable resources for available and taken seats
+        int availableSeatResource = R.drawable.availableseats;
+        int takenSeatResource = R.drawable.unavailableseats; // Update this line to use the correct resource ID
+
+        if (seatStatus != null && seatStatus.equals("1")) {
+            // Seat is taken
+            seatImageView.setImageResource(takenSeatResource);
+        } else {
+            // Seat is available
+            seatImageView.setImageResource(availableSeatResource);
+        }
     }
 
     public void navigateToPickBus(View view) {
@@ -42,7 +193,7 @@ public class ChooseSeat extends AppCompatActivity {
             seatImageView.setImageResource(R.drawable.selectedseat);
         }
 
-        // Update the text view with the selected seats
+        // Update the text view with the selected seats and total price
         updateSelectedSeatsTextView();
     }
 
@@ -57,5 +208,31 @@ public class ChooseSeat extends AppCompatActivity {
         }
 
         selectedSeatsTextView.setText("Standard Seats Taken: " + seatsText);
+
+        // Recalculate and update the total price
+        int totalPrice = selectedSeats.size();
+        totalStandardTextView.setText("Total Price: ₱" + totalPrice);
     }
+
+    public void navigateToTicketPage(View view) {
+        // Implement the logic to create a ticket and pass the necessary data to the TicketPage activity
+        // For example, you can pass the selected seats, total price, etc., as extras in the Intent.
+        // Then, start the TicketPage activity.
+        Intent intent = new Intent(ChooseSeat.this, ticket_page.class);
+        // Add extras to the intent if needed
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Remove the real-time listener when the activity is destroyed to avoid memory leaks
+        if (seatStatusListener != null) {
+            seatStatusListener.remove();
+        }
+    }
+
+
+
+
 }

@@ -14,6 +14,7 @@ import java.util.Date;
 public class PickBus extends AppCompatActivity {
 
     private String selectedDate = "";
+    private String selectedLocationAbbreviation = "";
 
     public void navigateToHomeActivity(View view) {
         Intent intent = new Intent(PickBus.this, HomeActivity.class);
@@ -35,6 +36,7 @@ public class PickBus extends AppCompatActivity {
         int premiumPrice = getIntent().getIntExtra("premiumPrice", 0);
 
         selectedDate = getIntent().getStringExtra("selectedDate");
+
         updateSelectedDate();
 
         if (selectedDestination != null && !selectedDestination.isEmpty()) {
@@ -73,6 +75,13 @@ public class PickBus extends AppCompatActivity {
 
     public void navigateToChooseSeat(View view) {
         Intent intent = new Intent(PickBus.this, ChooseSeat.class);
+        intent.putExtra("selectedDate", selectedDate);
+
+        // Get the selected destination from the TextView
+        TextView locations = findViewById(R.id.locations);
+        String selectedItinerary = locations.getText().toString().replace("CEB → ", "");
+        intent.putExtra("selectedItinerary", selectedItinerary);
+
         startActivity(intent);
     }
     public void navigateToChooseSeatDeluxe(View view) {

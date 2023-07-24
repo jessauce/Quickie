@@ -105,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                txtSendViaSms.setVisibility(View.INVISIBLE);
+                txtSendViaEmail.setVisibility(View.INVISIBLE);
+
                 txtEmail = edtEmail.getText().toString().trim();
                 txtPassword = edtPassword.getText().toString().trim();
 
@@ -191,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 // Add the functionality to send OTP via Email here
                 // For now, let's just show a Toast message indicating this feature is not yet implemented
                 Toast.makeText(MainActivity.this, "Sending OTP via Email (Not implemented yet)", Toast.LENGTH_SHORT).show();
+                startCountdown();
 
                 // Set visibility of "Send via SMS" and "Send via Email" TextViews
                 txtSendViaEmail.setVisibility(View.VISIBLE);

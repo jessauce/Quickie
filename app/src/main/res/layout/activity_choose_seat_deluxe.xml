@@ -98,6 +98,14 @@
                 android:layout_marginTop="25dp"
                 android:src="@drawable/unavailableseats" />
 
+            <ImageView
+                android:id="@+id/unavailableseat2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="260dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/unavailableseats" />
+
             <TextView
                 android:id="@+id/unavailabletext"
                 android:layout_width="wrap_content"
