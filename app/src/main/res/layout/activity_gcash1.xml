@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Gcash1"
+    android:background="@drawable/gcash1">
+
+    <Button
+        android:id="@+id/GLoginButton"
+        android:layout_width="345dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="52dp"
+        android:backgroundTint="#5271ff"
+        android:enabled="false"
+        android:text="Log in"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/no1"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="320dp"
+        android:clickable="true"
+        android:onClick="onSeatClick"
+        android:src="@drawable/num1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="320dp"
+        android:clickable="true"
+        android:onClick="onSeatClick"
+        android:src="@drawable/num2"
+        app:layout_constraintStart_toEndOf="@+id/no1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no3"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="44dp"
+        android:clickable="true"
+        android:onClick="onSeatClick"
+        android:src="@drawable/num3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/no2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no4"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="48dp"
+        android:clickable="true"
+        android:onClick="onSeatClick"
+        android:src="@drawable/num4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/no1"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no5"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
+        android:clickable="true"
+        android:onClick="onSeatClick"
+        android:src="@drawable/num5"
+        app:layout_constraintStart_toEndOf="@+id/no4"
+        app:layout_constraintTop_toBottomOf="@+id/no2"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no6"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="44dp"
+        android:clickable="true"
+        android:onClick="onSeatClick"
+        android:src="@drawable/num6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/no5"
+        app:layout_constraintTop_toBottomOf="@+id/no3"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no7"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="48dp"
+        android:clickable="true"
+        android:onClick="onSeatClick"
+        android:src="@drawable/num7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/no4"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no8"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="48dp"
+        android:clickable="true"
+        android:onClick="onSeatClick"
+        android:src="@drawable/num8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/no4"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no9"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="44dp"
+        android:clickable="true"
+        android:onClick="onSeatClick"
+        android:src="@drawable/num9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/no8"
+        app:layout_constraintTop_toBottomOf="@+id/no6"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
