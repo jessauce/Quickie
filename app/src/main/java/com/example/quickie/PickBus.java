@@ -82,6 +82,12 @@ public class PickBus extends AppCompatActivity {
         String selectedItinerary = locations.getText().toString().replace("CEB → ", "");
         intent.putExtra("selectedItinerary", selectedItinerary);
 
+        // Get the price from the TextView and pass it as an extra
+        TextView priceTextView = findViewById(R.id.pricestandard);
+        String priceString = priceTextView.getText().toString().replace("₱", ""); // Remove the "₱" symbol
+        int price = Integer.parseInt(priceString); // Convert the price to an integer
+        intent.putExtra("selectedPrice", price);
+
         startActivity(intent);
     }
     public void navigateToChooseSeatDeluxe(View view) {
@@ -92,6 +98,12 @@ public class PickBus extends AppCompatActivity {
         TextView locations = findViewById(R.id.locations);
         String selectedItinerary = locations.getText().toString().replace("CEB → ", "");
         intent.putExtra("selectedItinerary", selectedItinerary);
+
+        // Get the price from the TextView and pass it as an extra
+        TextView priceTextView = findViewById(R.id.pricesdeluxe);
+        String priceString = priceTextView.getText().toString().replace("₱", ""); // Remove the "₱" symbol
+        int price = Integer.parseInt(priceString); // Convert the price to an integer
+        intent.putExtra("selectedPrice", price);
 
         startActivity(intent);
     }
@@ -104,11 +116,30 @@ public class PickBus extends AppCompatActivity {
         String selectedItinerary = locations.getText().toString().replace("CEB → ", "");
         intent.putExtra("selectedItinerary", selectedItinerary);
 
+        // Get the price from the TextView and pass it as an extra
+        TextView priceTextView = findViewById(R.id.pricespremium);
+        String priceString = priceTextView.getText().toString().replace("₱", ""); // Remove the "₱" symbol
+        int price = Integer.parseInt(priceString); // Convert the price to an integer
+        intent.putExtra("selectedPrice", price);
+
         startActivity(intent);
     }
 
     public void navigateToChooseSeatExpress(View view) {
         Intent intent = new Intent(PickBus.this, ChooseSeatExpress.class);
+        intent.putExtra("selectedDate", selectedDate);
+
+        // Get the selected destination from the TextView
+        TextView locations = findViewById(R.id.locations);
+        String selectedItinerary = locations.getText().toString().replace("CEB → ", "");
+        intent.putExtra("selectedItinerary", selectedItinerary);
+
+        // Get the price from the TextView and pass it as an extra
+        TextView priceTextView = findViewById(R.id.expresspricestandard);
+        String priceString = priceTextView.getText().toString().replace("₱", ""); // Remove the "₱" symbol
+        int price = Integer.parseInt(priceString); // Convert the price to an integer
+        intent.putExtra("selectedPrice", price);
+
         startActivity(intent);
     }
     public void onTicketsButtonClick(View view) {
@@ -123,7 +154,7 @@ public class PickBus extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private String getAbbreviationForDestination(String destination) {
+    public String getAbbreviationForDestination(String destination) {
         String abbreviation = "";
         switch (destination) {
             case "Naga Terminal":

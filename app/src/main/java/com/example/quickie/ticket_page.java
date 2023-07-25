@@ -17,11 +17,10 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import java.util.UUID;
 
 public class ticket_page extends AppCompatActivity {
-
     private ImageView imgQRCode;
     private TextView txtReferenceNumber;
-
-
+    private TextView ticketDateTextView;
+    private String selectedDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +29,15 @@ public class ticket_page extends AppCompatActivity {
 
         imgQRCode = findViewById(R.id.imgQRCode);
         txtReferenceNumber = findViewById(R.id.txtReferenceNumber);
+        ticketDateTextView = findViewById(R.id.ticketdate);
 
         String referenceNumber = getIntent().getStringExtra("referenceNumber");
         if (referenceNumber != null) {
             generateQRCode(referenceNumber);
+        }
+        String selectedDate = getIntent().getStringExtra("selectedDate");
+        if (selectedDate != null) {
+            ticketDateTextView.setText(selectedDate); // Set the selected date in the TextView
         }
     }
 

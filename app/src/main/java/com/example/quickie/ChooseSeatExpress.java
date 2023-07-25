@@ -18,13 +18,18 @@ import android.view.View;
 import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class ChooseSeatExpress extends AppCompatActivity {
 
     // Initialize the selectedSeats list here
     private List<String> selectedSeats = new ArrayList<>();
     private TextView selectedSeatsTextView;
 
+    private TextView totalStandardTextView;
+
     private ProgressBar progressBar;
+
+    private int selectedPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,9 @@ public class ChooseSeatExpress extends AppCompatActivity {
         setContentView(R.layout.activity_choose_seat_express);
 
         selectedSeatsTextView = findViewById(R.id.seatstakentext);
+        totalStandardTextView = findViewById(R.id.totalstandardtext);
+
+        selectedPrice = getIntent().getIntExtra("selectedPrice", 0);
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
@@ -71,6 +79,9 @@ public class ChooseSeatExpress extends AppCompatActivity {
         }
 
         selectedSeatsTextView.setText("Express Seats Taken: " + seatsText);
+
+        int totalPrice = selectedSeats.size() * selectedPrice;
+        totalStandardTextView.setText("Total Price: ₱" + totalPrice);
     }
 
     public void navigateToGcash1Page(View view) {

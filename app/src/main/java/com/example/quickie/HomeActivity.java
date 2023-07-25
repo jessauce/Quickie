@@ -74,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         originComboBox.setAdapter(adapter);
         originComboBox.setThreshold(0); // Set threshold to 0 for immediate dropdown appearance
 
-        String[] destinationItems = {"Naga Terminal", "San Fernando Terminal", "Carcar Terminal", "Argao Terminal", "Dalaguete Terminal", "Alcoy Terminal", "Boljoon Terminal", "Oslob Terminal", "Santander Terminal"};
+        String[] destinationItems = {"Naga Terminal", "Argao Terminal", "Alcoy Terminal", "Santander Terminal"};
         ArrayAdapter<String> dadapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, destinationItems);
         destinationComboBox = findViewById(R.id.destinationComboBox);
         destinationComboBox.setAdapter(dadapter);
@@ -213,6 +213,7 @@ public class HomeActivity extends AppCompatActivity {
                 int standardPrice = getPriceForStandardBus(selectedDestination);
                 int deluxePrice = getPriceForDeluxeBus(selectedDestination);
                 int premiumPrice = getPriceForPremiumBus(selectedDestination);
+
                 Intent intent = new Intent(HomeActivity.this, PickBus.class);
                 intent.putExtra("selectedDestination", selectedDestination);
                 intent.putExtra("price", price);
@@ -393,6 +394,7 @@ public class HomeActivity extends AppCompatActivity {
         String selectedDestination = destinationComboBox.getText().toString();
         Intent intent = new Intent(HomeActivity.this, PickBus.class);
         intent.putExtra("selectedDestination", selectedDestination);
+
         startActivity(intent);
     }
 

@@ -29,9 +29,17 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Button;
 
 public class ChooseSeat extends AppCompatActivity {
+
+    private Button dateButton;
 
     // Initialize the selectedSeats list here
     private List<String> selectedSeats = new ArrayList<>();
@@ -44,6 +52,9 @@ public class ChooseSeat extends AppCompatActivity {
 
     private ListenerRegistration seatStatusListener;
 
+    private ProgressBar progressBar;
+    private int selectedPrice = 0;
+
     private String databaseItinerary; // Add this variable to store the database itinerary
 
     // Define the SeatStatusCallback interface here
@@ -53,7 +64,6 @@ public class ChooseSeat extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +71,13 @@ public class ChooseSeat extends AppCompatActivity {
         selectedSeatsTextView = findViewById(R.id.seatstakentext);
         totalStandardTextView = findViewById(R.id.totalstandardtext);
 
+        selectedPrice = getIntent().getIntExtra("selectedPrice", 0);
+
         db = FirebaseFirestore.getInstance();
         selectedDate = getIntent().getStringExtra("selectedDate");
 
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
 
         // Retrieve the selected itinerary from the intent
         String selectedItinerary = getIntent().getStringExtra("selectedItinerary");
@@ -113,8 +127,6 @@ public class ChooseSeat extends AppCompatActivity {
                     Toast.makeText(ChooseSeat.this, "Data retrieval failed. Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
 
                 if (document != null && document.exists()) {
                     // DocumentSnapshot contains the seat status data for the selected date, morning trip, and Standard bus
@@ -276,29 +288,8 @@ public class ChooseSeat extends AppCompatActivity {
 
         selectedSeatsTextView.setText("Standard Seats Taken: " + seatsText);
 
-        // Recalculate and update the total price
-        int totalPrice = selectedSeats.size();
+        int totalPrice = selectedSeats.size() * selectedPrice;
         totalStandardTextView.setText("Total Price: ₱" + totalPrice);
-    }
-
-    public void navigateToTicketPage(View view) {
-        // Check if any seats are selected before proceeding
-        if (selectedSeats.isEmpty()) {
-            Toast.makeText(this, "Please select seats before checking out.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Update the seat status in the Firestore database for each selected seat
-        for (String seatId : selectedSeats) {
-            updateSeatStatusInDatabase(seatId, "1");
-        }
-
-        // Implement the logic to create a ticket and pass the necessary data to the TicketPage activity
-        // For example, you can pass the selected seats, total price, etc., as extras in the Intent.
-        // Then, start the TicketPage activity.
-        Intent intent = new Intent(ChooseSeat.this, ticket_page.class);
-        // Add extras to the intent if needed
-        startActivity(intent);
     }
 
     @Override
@@ -309,8 +300,6 @@ public class ChooseSeat extends AppCompatActivity {
             seatStatusListener.remove();
         }
     }
-
-
 
     // Adjust the method signature to accept a SeatStatusCallback parameter
     private void getSeatStatusFromDatabase(final String seatId, final SeatStatusCallback callback) {
@@ -346,6 +335,65 @@ public class ChooseSeat extends AppCompatActivity {
                 });
     }
 
+    public void navigateToGcash1Page(View view) {
+        // Build the AlertDialog
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Confirmation");
+        alertDialogBuilder.setMessage("You are about to be redirected to Gcash. Do you want to proceed?");
+
+        alertDialogBuilder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Show the progress bar to indicate loading
+                progressBar.setVisibility(View.VISIBLE);
+
+                // Simulate a delay using a Handler (you can remove this in production)
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Hide the progress bar
+                        progressBar.setVisibility(View.GONE);
+
+                        // Get the total price from the TextView
+                        TextView totalStandardTextView = findViewById(R.id.totalstandardtext);
+                        String totalPriceString = totalStandardTextView.getText().toString().replace("Total Price: ₱", "");
+                        int totalPrice = Integer.parseInt(totalPriceString);
+
+                        String selectedDate = dateButton.getText().toString();
+
+                        if (selectedSeats.isEmpty()) {
+                            // Use ChooseSeat.this to refer to the activity context for Toast
+                            Toast.makeText(ChooseSeat.this, "Please select seats before checking out.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        // Update the seat status in the Firestore database for each selected seat
+                        for (String seatId : selectedSeats) {
+                            updateSeatStatusInDatabase(seatId, "1");
+                        }
+
+                        // Navigate to Gcash1 activity and pass the total price as an extra
+                        Intent intent = new Intent(ChooseSeat.this, Gcash1.class);
+                        intent.putExtra("totalPrice", totalPrice);
+                        intent.putExtra("selectedDate", selectedDate);
+                        startActivity(intent);
+                    }
+                }, 2000); // Adjust the delay time as needed (here, we use 2000 milliseconds or 2 seconds)
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // User clicked Cancel, do nothing (dismiss the dialog)
+                dialogInterface.dismiss();
+            }
+        });
+
+        // Show the AlertDialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
 
 }

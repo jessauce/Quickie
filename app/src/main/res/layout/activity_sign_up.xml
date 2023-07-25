@@ -192,9 +192,9 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="179dp"
-        android:layout_marginTop="750dp"
-        android:layout_marginEnd="168dp"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="834dp"
+        android:layout_marginEnd="173dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
