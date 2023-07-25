@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Gcash2"
-    android:background="@drawable/gcash2">
+    android:background="@drawable/gcash2noback">
 
     <Button
         android:id="@+id/GContinueButton"
@@ -13,9 +13,10 @@
         android:layout_height="65dp"
         android:layout_marginBottom="52dp"
         android:backgroundTint="#5271ff"
-        android:enabled="false"
         android:text="Continue"
         android:textColor="@color/white"
+        android:clickable="true"
+        android:onClick="navigateToGcash3Page"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

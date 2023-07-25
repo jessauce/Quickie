@@ -21,28 +21,27 @@ public class ticket_page extends AppCompatActivity {
     private ImageView imgQRCode;
     private TextView txtReferenceNumber;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_page);
 
-        Button btnGenerateQR = findViewById(R.id.btnGenerateQR);
         imgQRCode = findViewById(R.id.imgQRCode);
         txtReferenceNumber = findViewById(R.id.txtReferenceNumber);
 
-        btnGenerateQR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generateQRCode(generateReferenceNumber());
-            }
-        });
+        String referenceNumber = getIntent().getStringExtra("referenceNumber");
+        if (referenceNumber != null) {
+            generateQRCode(referenceNumber);
+        }
     }
 
-    private String generateReferenceNumber() {
+    public String generateReferenceNumber() {
         return "Ref-" + UUID.randomUUID().toString();
     }
 
-    private void generateQRCode(String data) {
+    public void generateQRCode(String data) {
         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
         try {
             Bitmap bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.QR_CODE, 400, 400);

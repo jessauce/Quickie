@@ -7,6 +7,22 @@
     android:background="@drawable/ticketnoshadow"
     tools:context=".ticket_page">
 
+    <TextView
+        android:id="@+id/noticket"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="587dp"
+        android:layout_marginEnd="131dp"
+        android:layout_marginBottom="259dp"
+        android:text="Ticket Unavailable.      Book a Bus now!"
+        android:textColor="#a6a6a6"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imgQRCode"
         android:layout_width="150dp"
@@ -22,13 +38,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnSignIn"
+        android:id="@+id/btnDownload"
         android:layout_width="340dp"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="80dp"
         android:backgroundTint="@color/button_enabled_color"
+        android:clickable="true"
+        android:onClick="onDownloadButtonClick"
         android:text="Download Ticket"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,16 +68,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgQRCode" />
-
-    <Button
-        android:id="@+id/btnGenerateQR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="230dp"
-        android:layout_marginTop="724dp"
-        android:text="Generate QR Code"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:layout_width="256dp"
@@ -118,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="110dp"
-            android:text="20 JAN"
+            android:text="-"
             android:textColor="#545454"
             android:textSize="19sp"
             android:textStyle="bold"
@@ -143,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="200dp"
             android:layout_marginTop="190dp"
-            android:text="Seat"
+            android:text="-"
             android:textColor="#545454"
             android:textSize="19sp"
             android:textStyle="bold"
@@ -168,7 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="190dp"
-            android:text="Account"
+            android:text="-"
             android:textColor="#545454"
             android:textSize="19sp"
             android:textStyle="bold"
@@ -218,7 +226,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="215dp"
             android:layout_marginTop="110dp"
-            android:text="1"
+            android:text="-"
             android:textColor="#545454"
             android:textSize="19sp"
             android:textStyle="bold"

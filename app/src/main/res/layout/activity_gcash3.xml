@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Gcash3"
-    android:background="@drawable/gcash3">
+    android:background="@drawable/gcash3noback">
 
     <Button
         android:id="@+id/GContinueButton"
@@ -13,9 +13,10 @@
         android:layout_height="65dp"
         android:layout_marginBottom="56dp"
         android:backgroundTint="#5271ff"
-        android:enabled="false"
-        android:text="Back to Quickie"
+        android:text="Get Ticket"
         android:textColor="@color/white"
+        android:clickable="true"
+        android:onClick="navigateToTicketPage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -145,7 +145,7 @@ public class HomeActivity extends AppCompatActivity {
         mapFragment.setHomeActivity(this);
     }
 
-    private void showDialog() {
+    public void showDialog() {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom);
@@ -271,7 +271,7 @@ public class HomeActivity extends AppCompatActivity {
         return price;
     }
 
-    private int getPriceForStandardBus(String destination) {
+    public int getPriceForStandardBus(String destination) {
         int standardPrice = 0;
         switch (destination) {
             case "Naga Terminal":
