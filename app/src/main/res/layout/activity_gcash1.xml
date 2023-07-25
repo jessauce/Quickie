@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Gcash1"
-    android:background="@drawable/gcash1noback">
+    android:background="@drawable/gcash1noback"
+    tools:context=".Gcash1">
 
     <Button
         android:id="@+id/GLoginButton"
@@ -13,10 +13,10 @@
         android:layout_height="65dp"
         android:layout_marginBottom="52dp"
         android:backgroundTint="#5271ff"
-        android:text="Log in"
-        android:textColor="@color/white"
         android:clickable="true"
         android:onClick="navigateToGcash2Page"
+        android:text="Log in"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -26,24 +26,11 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="292dp"
         android:clickable="true"
-        android:onClick="onSeatClick"
+        android:onClick="onNumericButtonClick"
         android:src="@drawable/num1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageView
-        android:id="@+id/no2"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="320dp"
-        android:clickable="true"
-        android:onClick="onSeatClick"
-        android:src="@drawable/num2"
-        app:layout_constraintStart_toEndOf="@+id/no1"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -52,10 +39,10 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="292dp"
         android:layout_marginEnd="44dp"
         android:clickable="true"
-        android:onClick="onSeatClick"
+        android:onClick="onNumericButtonClick"
         android:src="@drawable/num3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/no2"
@@ -67,9 +54,9 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:clickable="true"
-        android:onClick="onSeatClick"
+        android:onClick="onNumericButtonClick"
         android:src="@drawable/num4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/no1"
@@ -80,9 +67,9 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:clickable="true"
-        android:onClick="onSeatClick"
+        android:onClick="onNumericButtonClick"
         android:src="@drawable/num5"
         app:layout_constraintStart_toEndOf="@+id/no4"
         app:layout_constraintTop_toBottomOf="@+id/no2"
@@ -93,10 +80,10 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="44dp"
         android:clickable="true"
-        android:onClick="onSeatClick"
+        android:onClick="onNumericButtonClick"
         android:src="@drawable/num6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/no5"
@@ -108,9 +95,9 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="52dp"
         android:clickable="true"
-        android:onClick="onSeatClick"
+        android:onClick="onNumericButtonClick"
         android:src="@drawable/num7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/no4"
@@ -121,9 +108,9 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="168dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="52dp"
         android:clickable="true"
-        android:onClick="onSeatClick"
+        android:onClick="onNumericButtonClick"
         android:src="@drawable/num8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/no4"
@@ -134,14 +121,86 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="44dp"
         android:clickable="true"
-        android:onClick="onSeatClick"
+        android:onClick="onNumericButtonClick"
         android:src="@drawable/num9"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toEndOf="@+id/no8"
         app:layout_constraintTop_toBottomOf="@+id/no6"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="292dp"
+        android:clickable="true"
+        android:onClick="onNumericButtonClick"
+        android:src="@drawable/num2"
+        app:layout_constraintStart_toEndOf="@+id/no1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/no0"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="151dp"
+        android:layout_marginBottom="7dp"
+        android:clickable="true"
+        android:onClick="onNumericButtonClick"
+        android:src="@drawable/num0"
+        app:layout_constraintBottom_toTopOf="@+id/GLoginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/dotPass1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="223dp"
+        android:src="@drawable/dotpass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/dotPass2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="223dp"
+        android:src="@drawable/dotpass"
+        app:layout_constraintStart_toEndOf="@+id/dotPass1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/dotPass3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="223dp"
+        android:src="@drawable/dotpass"
+        app:layout_constraintStart_toEndOf="@+id/dotPass2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/dotPass4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="223dp"
+        android:src="@drawable/dotpass"
+        app:layout_constraintStart_toEndOf="@+id/dotPass3"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

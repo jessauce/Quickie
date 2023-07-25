@@ -7,61 +7,31 @@
     android:background="@drawable/finalpersonal"
     tools:context=".PersonalData">
 
-    <ImageView
-        android:id="@+id/profileImageView"
-        android:layout_width="116dp"
-        android:layout_height="129dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="255dp"
-        android:src="@drawable/picture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/changeImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="290dp"
-        android:layout_marginEnd="300dp"
-        android:text="Edit"
-        android:textColor="#E1705D"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="141dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="85dp"
         android:text="Name"
         android:textColor="#545454"
-        android:textSize="22sp"
+        android:textSize="50sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/personaldtransparentButton" />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="215dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginEnd="118dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
         android:text="Username"
         android:textColor="#545454"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/Name" />
 
     <RelativeLayout
         android:layout_width="345dp"
@@ -130,41 +100,6 @@
             android:layout_marginStart="16dp"
             android:src="@drawable/phoneno" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="345dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="523dp"
-        android:layout_marginEnd="33dp"
-        android:background="@drawable/rectangle_personaldata"
-        android:clickable="true"
-        android:onClick="navigateToPersonalData"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/HomeAddress"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toEndOf="@+id/HomeaImg"
-            android:text="Home Address"
-            android:textColor="#545454"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:id="@+id/HomeaImg"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/addressicon" />
 
     </RelativeLayout>
 
