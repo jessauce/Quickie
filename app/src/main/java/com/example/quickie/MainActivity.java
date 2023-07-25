@@ -215,27 +215,6 @@ public class MainActivity extends AppCompatActivity {
             edtEmail.setText(txtEmail);
             edtPassword.setText(receivedOTP);
         }
-
-
-        txtSendViaEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Set the flag to true and the other to false
-                sendViaEmailClicked = true;
-                sendViaSmsClicked = false;
-
-                // Add the functionality to send OTP via Email here
-                sendOtpViaEmail(otp); // Call the sendOtpViaEmail method with the stored recipient email
-
-                startCountdown();
-
-                // Set visibility of "Send via SMS" and "Send via Email" TextViews
-                txtSendViaEmail.setVisibility(View.VISIBLE);
-                txtSendViaSms.setVisibility(View.INVISIBLE);
-            }
-        });
-
-
     }
 
 
@@ -253,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{recipientEmail});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, message);
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{senderEmail}); // Set your email as the sender
+        emailIntent.putExtra(Intent.EXTRA_BCC, new String[]{senderEmail}); // Set your email as the sender using BCC
 
         // Verify that the device has an email client to handle the Intent
         if (emailIntent.resolveActivity(getPackageManager()) != null) {

@@ -86,10 +86,24 @@ public class PickBus extends AppCompatActivity {
     }
     public void navigateToChooseSeatDeluxe(View view) {
         Intent intent = new Intent(PickBus.this, ChooseSeatDeluxe.class);
+        intent.putExtra("selectedDate", selectedDate);
+
+        // Get the selected destination from the TextView
+        TextView locations = findViewById(R.id.locations);
+        String selectedItinerary = locations.getText().toString().replace("CEB → ", "");
+        intent.putExtra("selectedItinerary", selectedItinerary);
+
         startActivity(intent);
     }
     public void navigateToChooseSeatPremium(View view) {
         Intent intent = new Intent(PickBus.this, ChooseSeatPremium.class);
+        intent.putExtra("selectedDate", selectedDate);
+
+        // Get the selected destination from the TextView
+        TextView locations = findViewById(R.id.locations);
+        String selectedItinerary = locations.getText().toString().replace("CEB → ", "");
+        intent.putExtra("selectedItinerary", selectedItinerary);
+
         startActivity(intent);
     }
 

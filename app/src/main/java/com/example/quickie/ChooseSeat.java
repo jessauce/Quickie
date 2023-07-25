@@ -19,8 +19,17 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.EventListener;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class ChooseSeat extends AppCompatActivity {
 
@@ -34,6 +43,14 @@ public class ChooseSeat extends AppCompatActivity {
     private static final String COLLECTION_PATH = "CSBT/";
 
     private ListenerRegistration seatStatusListener;
+
+    private String databaseItinerary; // Add this variable to store the database itinerary
+
+    // Define the SeatStatusCallback interface here
+    public interface SeatStatusCallback {
+        void onSeatStatusReceived(String seatStatus);
+        void onSeatStatusError(Exception e);
+    }
 
 
 
@@ -52,7 +69,6 @@ public class ChooseSeat extends AppCompatActivity {
         String selectedItinerary = getIntent().getStringExtra("selectedItinerary");
 
         // Convert selectedItinerary to databaseItinerary using a switch statement
-        String databaseItinerary;
         switch (selectedItinerary) {
             case "OSLB":
                 databaseItinerary = "CSBT-OSLOB";
@@ -74,8 +90,6 @@ public class ChooseSeat extends AppCompatActivity {
                 databaseItinerary = "";
                 break;
         }
-
-
 
         // Add log and toast for selectedDate here
         Log.d("ChooseSeat", "Selected Date: " + selectedDate);
@@ -157,6 +171,33 @@ public class ChooseSeat extends AppCompatActivity {
         });
     }
 
+
+    private void updateSeatStatusInDatabase(String seatId, String status) {
+        if (databaseItinerary.isEmpty()) {
+            Log.e("ChooseSeat", "Error: Database itinerary is not set.");
+            return;
+        }
+
+        String documentPath = COLLECTION_PATH + databaseItinerary + "/rideDate/" + selectedDate + "/morningTrip/Standard";
+        DocumentReference seatDocumentRef = db.document(documentPath);
+
+        seatDocumentRef
+                .update(seatId, status)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("ChooseSeat", "Seat status updated in the database.");
+                        } else {
+                            Log.e("ChooseSeat", "Error updating seat status in the database: " + task.getException());
+                            Toast.makeText(ChooseSeat.this, "Failed to update seat status.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+
     private void updateSeatStatus(DocumentSnapshot document, String seatId, int seatViewId) {
         String seatStatus = document.getString(seatId);
         ImageView seatImageView = findViewById(seatViewId);
@@ -180,21 +221,47 @@ public class ChooseSeat extends AppCompatActivity {
     }
 
     public void onSeatClick(View view) {
-        ImageView seatImageView = (ImageView) view;
-        String seatId = seatImageView.getResources().getResourceEntryName(seatImageView.getId());
+        final ImageView seatImageView = (ImageView) view;
+        final String seatId = seatImageView.getResources().getResourceEntryName(seatImageView.getId());
 
-        if (selectedSeats.contains(seatId)) {
-            // Seat was already selected, remove it from the list and update its color
-            selectedSeats.remove(seatId);
-            seatImageView.setImageResource(R.drawable.availableseats);
-        } else {
-            // Seat was not selected, add it to the list and update its color
-            selectedSeats.add(seatId);
-            seatImageView.setImageResource(R.drawable.selectedseat);
-        }
+        // Retrieve the current status of the seat from the database
+        getSeatStatusFromDatabase(seatId, new SeatStatusCallback() {
+            @Override
+            public void onSeatStatusReceived(String seatStatus) {
+                if (seatStatus == null) {
+                    // Seat status could not be retrieved, show an error message
+                    Toast.makeText(ChooseSeat.this, "Failed to get seat status. Please try again.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-        // Update the text view with the selected seats and total price
-        updateSelectedSeatsTextView();
+                if (seatStatus.equals("1")) {
+                    // Seat is taken, notify the user
+                    Toast.makeText(ChooseSeat.this, "This seat is already taken.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Seat status is "0" (available), update the seat status locally
+                if (selectedSeats.contains(seatId)) {
+                    // Seat was already selected, remove it from the list and update its color
+                    selectedSeats.remove(seatId);
+                    seatImageView.setImageResource(R.drawable.availableseats);
+                } else {
+                    // Seat was not selected, add it to the list and update its color
+                    selectedSeats.add(seatId);
+                    seatImageView.setImageResource(R.drawable.selectedseat);
+                }
+
+                // Update the text view with the selected seats and total price
+                updateSelectedSeatsTextView();
+            }
+
+            @Override
+            public void onSeatStatusError(Exception e) {
+                // Handle any errors that occurred while fetching the seat status
+                Log.e("ChooseSeat", "Error fetching seat status: " + e.getMessage());
+                Toast.makeText(ChooseSeat.this, "Failed to get seat status. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void updateSelectedSeatsTextView() {
@@ -215,6 +282,17 @@ public class ChooseSeat extends AppCompatActivity {
     }
 
     public void navigateToTicketPage(View view) {
+        // Check if any seats are selected before proceeding
+        if (selectedSeats.isEmpty()) {
+            Toast.makeText(this, "Please select seats before checking out.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Update the seat status in the Firestore database for each selected seat
+        for (String seatId : selectedSeats) {
+            updateSeatStatusInDatabase(seatId, "1");
+        }
+
         // Implement the logic to create a ticket and pass the necessary data to the TicketPage activity
         // For example, you can pass the selected seats, total price, etc., as extras in the Intent.
         // Then, start the TicketPage activity.
@@ -232,6 +310,41 @@ public class ChooseSeat extends AppCompatActivity {
         }
     }
 
+
+
+    // Adjust the method signature to accept a SeatStatusCallback parameter
+    private void getSeatStatusFromDatabase(final String seatId, final SeatStatusCallback callback) {
+        String documentPath = COLLECTION_PATH + databaseItinerary + "/rideDate/" + selectedDate + "/morningTrip/Standard";
+        DocumentReference seatDocumentRef = db.document(documentPath);
+
+        seatDocumentRef
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            String seatStatus = documentSnapshot.getString(seatId);
+                            if (seatStatus != null) {
+                                // Seat status found, call the appropriate method of the callback interface
+                                callback.onSeatStatusReceived(seatStatus);
+                            } else {
+                                // Seat status not found, call the appropriate method of the callback interface with an error
+                                callback.onSeatStatusError(new Exception("Seat status not found for seat: " + seatId));
+                            }
+                        } else {
+                            // Document not found, call the appropriate method of the callback interface with an error
+                            callback.onSeatStatusError(new Exception("Document not found for seat: " + seatId));
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Error occurred while fetching seat status, call the appropriate method of the callback interface with an error
+                        callback.onSeatStatusError(e);
+                    }
+                });
+    }
 
 
 
