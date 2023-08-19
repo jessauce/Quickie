@@ -16,6 +16,13 @@ public class Gcash3 extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private Button dateButton;
+    private String selectedDate = "JUL 27 2023";
+    private String Date = "JULY 27 2023";
+    private String Persons = "2";
+    private String AccName = "Klint Ian";
+    private String Seat = "C5, D5";
+
+    private String Price = "₱135";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,11 @@ public class Gcash3 extends AppCompatActivity {
                 // Proceed to page after the delay
                 Intent intent = new Intent(Gcash3.this, ticket_page.class);
                 intent.putExtra("referenceNumber", referenceNumber);
+                intent.putExtra("Date", Date);
+                intent.putExtra("Persons", Persons);
+                intent.putExtra("AccName", AccName);
+                intent.putExtra("Seat", Seat);
+                intent.putExtra("Price", Price);
                 startActivity(intent);
             }
         }, 4000);

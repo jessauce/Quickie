@@ -280,7 +280,7 @@ public class ChooseSeatDeluxe extends AppCompatActivity {
             seatsText.setLength(seatsText.length() - 2); // Remove the last comma and space
         }
 
-        selectedSeatsTextView.setText("Standard Seats Taken: " + seatsText);
+        selectedSeatsTextView.setText("Deluxe Seats Taken: " + seatsText);
 
         int totalPrice = selectedSeats.size() * selectedPrice;
         totalStandardTextView.setText("Total Price: ₱" + totalPrice);

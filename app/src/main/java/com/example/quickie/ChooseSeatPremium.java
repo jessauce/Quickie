@@ -279,7 +279,7 @@ public class ChooseSeatPremium extends AppCompatActivity {
             seatsText.setLength(seatsText.length() - 2); // Remove the last comma and space
         }
 
-        selectedSeatsTextView.setText("Standard Seats Taken: " + seatsText);
+        selectedSeatsTextView.setText("Premium Seats Taken: " + seatsText);
 
         // Recalculate and update the total price
         int totalPrice = selectedSeats.size() * selectedPrice;

@@ -21,6 +21,10 @@ public class ticket_page extends AppCompatActivity {
     private TextView txtReferenceNumber;
     private TextView ticketDateTextView;
     private String selectedDate = "";
+    private TextView passengersTextView;
+    private TextView nameTextView;
+    private TextView seatTextView;
+    private TextView PriceTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,10 @@ public class ticket_page extends AppCompatActivity {
         imgQRCode = findViewById(R.id.imgQRCode);
         txtReferenceNumber = findViewById(R.id.txtReferenceNumber);
         ticketDateTextView = findViewById(R.id.ticketdate);
+        passengersTextView = findViewById(R.id.ticketpassenger);
+        nameTextView = findViewById(R.id.ticketname);
+        seatTextView = findViewById(R.id.ticketseat);
+        PriceTextView = findViewById(R.id.tickettotal);
 
         String referenceNumber = getIntent().getStringExtra("referenceNumber");
         if (referenceNumber != null) {
@@ -39,6 +47,17 @@ public class ticket_page extends AppCompatActivity {
         if (selectedDate != null) {
             ticketDateTextView.setText(selectedDate); // Set the selected date in the TextView
         }
+        String persons = getIntent().getStringExtra("Persons");
+        String accName = getIntent().getStringExtra("AccName");
+        String seat = getIntent().getStringExtra("Seat");
+        String date = getIntent().getStringExtra("Date");
+        String price = getIntent().getStringExtra("Price");
+
+        passengersTextView.setText(persons);
+        nameTextView.setText(accName);
+        seatTextView.setText(seat);
+        ticketDateTextView.setText(date);
+        PriceTextView.setText(price);
     }
 
     public String generateReferenceNumber() {
